@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="202.0" prefWidth="293.0" style="-fx-border-radius: 10px; -fx-background-radius: 10px; -fx-background-color: #080f1e; -fx-border-color: #8984bf;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.evenly.EventCardController">
+   <children>
+      <VBox layoutX="88.0" layoutY="-8.0" prefHeight="192.0" prefWidth="293.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="204.0" prefWidth="293.0">
+               <children>
+                  <ImageView fitHeight="113.0" fitWidth="293.0" pickOnBounds="true" fx:id="imgEventCard">
+                  </ImageView>
+                  <Label fx:id="textTypeEvent" layoutX="14.0" layoutY="14.0" style="-fx-background-color: #bc69dd; -fx-padding: 5px; -fx-background-radius: 10px;" text="TypeEvent" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins Regular" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="textNameEvent" layoutX="14.0" layoutY="122.0" text="Name Event" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="textPlaceEvent" layoutX="14.0" layoutY="142.0" text="Place of Event" textFill="#aeabab">
+                     <font>
+                        <Font name="Poppins SemiBold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="textDateEvent" layoutX="134.0" layoutY="142.0" text="Date of Event" textFill="#aeabab">
+                     <font>
+                        <Font name="Poppins SemiBold" size="10.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="textPriceEvent" layoutX="14.0" layoutY="166.0" text="Price of event" textFill="#61d381">
+                     <font>
+                        <Font name="Poppins SemiBold" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="142.0" layoutY="164.0" mnemonicParsing="false" onAction="#onChangeSeeDetails" prefHeight="27.0" prefWidth="119.0" style="-fx-background-color: transparent; -fx-border-color: #8984bf; -fx-border-radius: 5px;" stylesheets="@css/style.css" text="See details -&gt;" textFill="#8984bf">
+                     <font>
+                        <Font name="Poppins Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

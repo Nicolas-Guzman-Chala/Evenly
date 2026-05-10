@@ -1,0 +1,84 @@
+[
+  {
+    "id": 3,
+    "name": "Tech Future Conference 2026",
+    "city": "Medellin",
+    "date": "2026-09-02",
+    "hour": "09:00",
+    "capacity": 3000,
+    "price": 120000.0,
+    "imagePath": ""
+  },
+  {
+    "id": 4,
+    "name": "Hamlet Theater Show",
+    "city": "Cali",
+    "date": "2026-06-25",
+    "hour": "19:00",
+    "capacity": 1200,
+    "price": 60000.0,
+    "imagePath": ""
+  },
+  {
+    "id": 5,
+    "name": "National Football Finals",
+    "city": "Bogota",
+    "date": "2026-10-18",
+    "hour": "14:00",
+    "capacity": 15000,
+    "price": 150000.0,
+    "imagePath": ""
+  },
+  {
+    "id": 6,
+    "name": "Michel Jackson",
+    "description": "",
+    "category": "CONFERENCIA",
+    "city": "Armenia",
+    "date": "2025-04-30",
+    "hour": "21:00",
+    "state": "PUBLICADO",
+    "capacity": 120,
+    "price": 20000.0,
+    "imagePath": ""
+  },
+  {
+    "id": 7,
+    "name": "New Event",
+    "description": "",
+    "category": "FESTIVAL",
+    "city": "Armenia",
+    "date": "2026-05-06",
+    "hour": "20:00",
+    "state": "PUBLICADO",
+    "capacity": 120,
+    "price": 120000.0,
+    "imagePath": ""
+  },
+  {
+    "id": 8,
+    "name": "aaa",
+    "description": "",
+    "category": "TEATRO",
+    "city": "erasd",
+    "date": "2026-05-07",
+    "hour": "123",
+    "state": "PUBLICADO",
+    "capacity": 12,
+    "price": 12.0,
+    "imagePath": "storage/images/1778365082283_First-Event.png"
+  },
+  {
+    "id": 9,
+    "name": "a",
+    "description": "",
+    "category": "CONFERENCIA",
+    "city": "asd",
+    "date": "2026-05-30",
+    "hour": "123",
+    "state": "PUBLICADO",
+    "capacity": 123,
+    "price": 1.0,
+    "imagePath": "C:/Users/bimac/IdeaProjects/Evenly/storage/images/1778365370863_BannerHero.png"
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "idUser": "USR-001",
+    "fullName": "Juan Esteban Ramirez",
+    "email": "juan.ramirez@gmail.com",
+    "phone": "3104567890",
+    "password": "juan123",
+    "imagePath" : ""
+  },
+  {
+    "idUser": "USR-002",
+    "fullName": "Maria Fernanda Lopez",
+    "email": "maria.lopez@gmail.com",
+    "phone": "3119876543",
+    "password": "maria456",
+    "imagePath" : ""
+  },
+  {
+    "idUser": "USR-003",
+    "fullName": "Carlos Andres Gomez",
+    "email": "carlos.gomez@gmail.com",
+    "phone": "3001122334",
+    "password": "carlos789",
+    "imagePath" : ""
+  },
+  {
+    "idUser": "USR-004",
+    "fullName": "Laura Sofia Martinez",
+    "email": "laura.martinez@gmail.com",
+    "phone": "3156677889",
+    "password": "laura321",
+    "imagePath" : ""
+  },
+  {
+    "idUser": "USR-005",
+    "fullName": "Andres Felipe Torres",
+    "email": "andres.torres@gmail.com",
+    "phone": "3209988776",
+    "password": "andres654",
+    "imagePath" : ""
+  }
+]

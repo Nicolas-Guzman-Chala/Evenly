@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1367.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.evenly.HomeController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1375.0" style="-fx-background-color: linear-gradient(135deg,   #0F172A 0%,#1E1B4B 50%,#312E81 100%);;" stylesheets="@css/style.css">
+         <children>
+            <ImageView fitHeight="700.0" fitWidth="1376.0" pickOnBounds="true">
+               <image>
+                  <Image url="@imgs/background-dashboard.png" />
+               </image>
+            </ImageView>
+            <BorderPane prefHeight="700.0" prefWidth="1364.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <top>
+                  <AnchorPane prefHeight="84.0" prefWidth="1364.0" style="-fx-border-color: #fff; -fx-opacity: 1;" styleClass="pane-blue" BorderPane.alignment="CENTER">
+                     <children>
+                        <Circle fill="DODGERBLUE" layoutX="1230.0" layoutY="44.0" radius="18.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #343845;" />
+                        <ImageView fx:id="user" fitHeight="57.0" fitWidth="57.0" layoutX="1260.0" layoutY="15.0" onDragDetected="#onChangeProfile" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imgs/user-icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="1218.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@imgs/bell-icon.png" />
+                           </image>
+                        </ImageView>
+                        <AnchorPane layoutX="482.0" layoutY="19.0" prefHeight="43.0" prefWidth="481.0" styleClass="gray-panel">
+                           <children>
+                              <Label fx:id="home" layoutX="60.0" layoutY="10.0" onDragDetected="#onChangeHome" text="Home">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-100.0" endY="11.0" layoutX="265.0" layoutY="22.0" startX="-100.0" startY="-13.0" stroke="#d0bdbd" />
+                              <Label fx:id="events" layoutX="214.0" layoutY="10.0" onDragDetected="#onChangeEvents" text="Events">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Line endX="-100.0" endY="11.0" layoutX="416.0" layoutY="22.0" startX="-100.0" startY="-13.0" stroke="#d0bdbd" />
+                              <Label fx:id="merchandising" layoutX="336.0" layoutY="10.0" onDragDetected="#onChangeMerchandising" text="Merchandising">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Circle fill="DODGERBLUE" layoutX="1329.0" layoutY="44.0" radius="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" style="-fx-fill: #343845;" />
+                        <AnchorPane layoutX="98.0" layoutY="12.0" prefHeight="63.0" prefWidth="179.0">
+                           <children>
+                              <ImageView fitHeight="65.0" fitWidth="216.0" layoutX="19.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/EvenlyLogo.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="91.0" layoutY="10.0" text="Evenly">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="8.0" prefHeight="298.0" prefWidth="1356.0" style="-fx-border-radius: 20px; -fx-background-radius: 20px;">
+                           <children>
+                              <ImageView fitHeight="298.0" fitWidth="1369.0" layoutX="-3.0" pickOnBounds="true" style="-fx-border-radius: 20px;">
+                                 <image>
+                                    <Image url="@imgs/BannerHero.png" />
+                                 </image></ImageView>
+                              <Button fx:id="EventsButton" layoutX="63.0" layoutY="143.0" mnemonicParsing="false" onAction="#onChangeEvents" prefHeight="48.0" prefWidth="295.0" styleClass="button-purple" text="View Events">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </center>
+               <bottom>
+                  <AnchorPane prefHeight="318.0" prefWidth="1376.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="67.0" layoutY="77.0" prefHeight="197.0" prefWidth="358.0">
+                           <children>
+                              <ImageView fitHeight="197.0" fitWidth="357.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@imgs/First-Event.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="39.0" layoutY="98.0" text="Hamilton">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="39.0" layoutY="139.0" text="Fecha" textFill="#cdbebe">
+                                 <font>
+                                    <Font name="Poppins Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="509.0" layoutY="77.0" prefHeight="197.0" prefWidth="358.0">
+                           <children>
+                              <ImageView fitHeight="197.0" fitWidth="357.0" layoutX="1.0" layoutY="1.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@imgs/Second-Event.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="28.0" layoutY="99.0" text="Hamilton">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="28.0" layoutY="140.0" text="Fecha" textFill="#cdbebe">
+                                 <font>
+                                    <Font name="Poppins Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="964.0" layoutY="77.0" prefHeight="197.0" prefWidth="358.0">
+                           <children>
+                              <ImageView fitHeight="197.0" fitWidth="357.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+                                 <image>
+                                    <Image url="@imgs/Third-Event.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="24.0" layoutY="98.0" text="Hamilton">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="24.0" layoutY="139.0" text="Fecha" textFill="#cdbebe">
+                                 <font>
+                                    <Font name="Poppins Regular" size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Label layoutX="67.0" layoutY="14.0" text="The Hypest Events">
+                           <font>
+                              <Font name="Poppins SemiBold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Line endX="-107.0" endY="5.0" layoutX="468.0" layoutY="31.0" startX="852.3333740234375" startY="5.0" stroke="#d0bdbd" />
+                     </children>
+                  </AnchorPane>
+               </bottom>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
