@@ -14,7 +14,7 @@ El sistema también permite la administración completa de eventos, recintos, zo
 
 **Pensamiento computacional**
 
-El documento de Pensamiento Computacional contiene el análisis del problema, la organización de la información relevante, la identificación de funcionalidades del sistema y la forma en la que se estructuró la solución en términos de clases, responsabilidades y reutilización de componentes.
+El documento de PROYECTO_PROGRAMACION_2 contiene el análisis del problema, la organización de la información relevante, la identificación de funcionalidades del sistema y la forma en la que se estructuró la solución en términos de clases, responsabilidades y reutilización de componentes.
 
 El link al diagrama de clases se encuentra en el documento.
 
