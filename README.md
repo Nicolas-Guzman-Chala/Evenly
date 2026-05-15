@@ -13,10 +13,7 @@ Este proyecto consiste en el desarrollo de una plataforma de gestión de eventos
 El sistema también permite la administración completa de eventos, recintos, zonas, asientos y compras, además de la generación de reportes y el manejo de incidencias operativas.
 
 **Pensamiento computacional**
-
-El documento de PROYECTO_PROGRAMACION_2 contiene el análisis del problema, la organización de la información relevante, la identificación de funcionalidades del sistema y la forma en la que se estructuró la solución en términos de clases, responsabilidades y reutilización de componentes.
-
-El link al diagrama de clases se encuentra en el documento.
+La carpeta DOCUMENTACION DEL PROYECTO  contiene el archivo del pensamiento computacional junto con el link al diagrama de clases, y un archivo adicional acerca de la justificacion del uso de los patrones de diseño.
 
 Este documento corresponde a la primera fase del proyecto y sirve como base para el diseño del sistema.
 
