@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
@@ -41,10 +42,10 @@ public class EditEventController {
     private ChoiceBox<EstadoEvento> pickState;
 
     @FXML
-    private TextField textCapacity;
+    private ChoiceBox<Cities> pickCity;
 
     @FXML
-    private TextField textCity;
+    private TextField textCapacity;
 
     @FXML
     private TextField textPrice;
@@ -52,8 +53,6 @@ public class EditEventController {
     @FXML
     private TextField textVenue;
 
-    @FXML
-    private TextField textZone;
 
     @FXML
     public void initialize() {
@@ -63,6 +62,9 @@ public class EditEventController {
 
         pickState.getItems()
                 .addAll(EstadoEvento.values());
+
+        pickCity.getItems()
+                .addAll(Cities.values());
     }
 
     public void setEvent(Event event) {
@@ -71,11 +73,9 @@ public class EditEventController {
 
         inputNameEvent.setText(event.getName());
 
-        textCity.setText(event.getCity());
+        pickCity.setValue(event.getCity());
 
 //        textVenue.setText(event.getVenue());
-//
-//        textZone.setText(event.getZone());
 
         textCapacity.setText(
                 String.valueOf(event.getCapacity())
@@ -116,16 +116,13 @@ public class EditEventController {
             );
 
             event.setCity(
-                    textCity.getText()
+                    pickCity.getValue()
             );
 
 //            event.setVenue(
 //                    textVenue.getText()
 //            );
 //
-//            event.setZone(
-//                    textZone.getText()
-//            );
 
             event.setCapacity(
                     Integer.parseInt(

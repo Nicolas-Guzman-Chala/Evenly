@@ -1,6 +1,7 @@
 package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
@@ -52,7 +53,7 @@ public class AdminEventsController {
     private TextField textCapacity;
 
     @FXML
-    private TextField textCity;
+    private ChoiceBox<Cities> pickCity;
 
     @FXML
     private Label textName;
@@ -64,9 +65,6 @@ public class AdminEventsController {
     private TextField textVenue;
 
     @FXML
-    private TextField textZone;
-
-    @FXML
     private VBox vBoxContainer;
 
     @FXML
@@ -75,6 +73,8 @@ public class AdminEventsController {
         pickCategory.getItems().addAll(CategoriaEvento.values());
 
         pickState.getItems().addAll(EstadoEvento.values());
+
+        pickCity.getItems().addAll(Cities.values());
         events = eventService.getEvent();
 
         renderEvents();
@@ -201,11 +201,10 @@ public class AdminEventsController {
 
             String name = inputNameEvent.getText();
 
-            String city = textCity.getText();
+            Cities city = pickCity.getValue();
 
             String venue = textVenue.getText();
 
-            String zone = textZone.getText();
 
             int capacity = Integer.parseInt(textCapacity.getText());
 
@@ -224,7 +223,6 @@ public class AdminEventsController {
                     name,
                     city,
                     venue,
-                    zone,
                     capacity,
                     price,
                     dateEventPicker.getValue(),
@@ -256,9 +254,8 @@ public class AdminEventsController {
     public void clearFields(){
 
         inputNameEvent.clear();
-        textCity.clear();
+        pickCity.setValue(null);
         textVenue.clear();
-        textZone.clear();
         textCapacity.clear();
         textPrice.clear();
         hourEvent.clear();

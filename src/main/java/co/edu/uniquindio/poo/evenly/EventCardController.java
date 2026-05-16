@@ -3,9 +3,13 @@ package co.edu.uniquindio.poo.evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -56,9 +60,11 @@ public class EventCardController {
                 event.getName()
         );
 
-        textPlaceEvent.setText(
-                event.getCity()
-        );
+        if(event.getCity() != null){
+            textPlaceEvent.setText(event.getCity().toString());
+        }else{
+            textPlaceEvent.setText("Unknown city");
+        }
 
         textDateEvent.setText(
                 event.getDate().toString() + ", " + event.getHour()
@@ -101,8 +107,37 @@ public class EventCardController {
     }
 
     @FXML
-    void onChangeSeeDetails(ActionEvent event) {
+    void onChangeSeeDetails(ActionEvent e) {
+        try {
 
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "/co/edu/uniquindio/poo/evenly/SeeDetailsEvent.fxml"
+                            )
+                    );
+
+            Parent root =
+                    loader.load();
+
+            SeeDetailsEventController controller =
+                    loader.getController();
+
+            controller.setEvent(event);
+
+            Stage stage =
+                    new Stage();
+
+            stage.setScene(
+                    new Scene(root)
+            );
+
+            stage.show();
+
+        } catch (Exception ex) {
+
+            ex.printStackTrace();
+        }
     }
 
 }

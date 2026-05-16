@@ -1,53 +1,664 @@
 [
   {
-    "id": 3,
-    "name": "Tech Future Conference 2026",
-    "city": "Medellin",
-    "date": "2026-09-02",
-    "hour": "09:00",
-    "capacity": 3000,
-    "price": 120000.0,
-    "imagePath": ""
-  },
-  {
-    "id": 4,
-    "name": "Hamlet Theater Show",
-    "city": "Cali",
-    "date": "2026-06-25",
-    "hour": "19:00",
-    "capacity": 1200,
-    "price": 60000.0,
-    "imagePath": ""
-  },
-  {
     "id": 5,
     "name": "National Football Finals",
-    "city": "Bogota",
+    "description": "",
+    "category": "DEPORTIVO",
+    "city": "BOGOTA",
     "date": "2026-10-18",
     "hour": "14:00",
+    "state": "PUBLICADO",
     "capacity": 15000,
     "price": 150000.0,
-    "imagePath": ""
+    "imagePath": "",
+    "seats": [
+      {
+        "code": "A3",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A4",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A9",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A10",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A7",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A8",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A13",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A14",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A5",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A11",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A6",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A12",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 210000.0
+      },
+      {
+        "code": "A1",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "A2",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 210000.0
+      },
+      {
+        "code": "B1",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B3",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B5",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B6",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B7",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B8",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B9",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B10",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 190000.0
+      },
+      {
+        "code": "B11",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 190000.0
+      },
+      {
+        "code": "B12",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B4",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 190000.0
+      },
+      {
+        "code": "B2",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 190000.0
+      },
+      {
+        "code": "B13",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B14",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B15",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B16",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "B17",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 190000.0
+      },
+      {
+        "code": "B18",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 190000.0
+      },
+      {
+        "code": "C1",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "C3",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "C5",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "C2",
+        "zone": "GENERAL",
+        "status": "OCCUPIED",
+        "price": 170000.0
+      },
+      {
+        "code": "C4",
+        "zone": "GENERAL",
+        "status": "OCCUPIED",
+        "price": 170000.0
+      },
+      {
+        "code": "C6",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "C8",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "C7",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 170000.0
+      },
+      {
+        "code": "D1",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D2",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D3",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D4",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D5",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D6",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D10",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D11",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D12",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D7",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D8",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      },
+      {
+        "code": "D9",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 150000.0
+      }
+    ]
   },
   {
     "id": 6,
     "name": "Michel Jackson",
     "description": "",
     "category": "CONFERENCIA",
-    "city": "Armenia",
+    "city": "ARMENIA",
     "date": "2025-04-30",
     "hour": "21:00",
     "state": "PUBLICADO",
     "capacity": 120,
     "price": 20000.0,
-    "imagePath": ""
+    "imagePath": "",
+    "seats": [
+      {
+        "code": "A3",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A4",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A9",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A10",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A7",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A8",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A13",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A14",
+        "zone": "VIP",
+        "status": "OCCUPIED",
+        "price": 80000.0
+      },
+      {
+        "code": "A5",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A11",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A6",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A12",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A1",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "A2",
+        "zone": "VIP",
+        "status": "AVAILABLE",
+        "price": 80000.0
+      },
+      {
+        "code": "B1",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B3",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B5",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B6",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B7",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B8",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B9",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B10",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B11",
+        "zone": "PREFERENCIAL",
+        "status": "OCCUPIED",
+        "price": 60000.0
+      },
+      {
+        "code": "B12",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B4",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B2",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B13",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B14",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B15",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B16",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B17",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "B18",
+        "zone": "PREFERENCIAL",
+        "status": "AVAILABLE",
+        "price": 60000.0
+      },
+      {
+        "code": "C1",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C3",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C5",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C2",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C4",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C6",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C8",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "C7",
+        "zone": "GENERAL",
+        "status": "AVAILABLE",
+        "price": 40000.0
+      },
+      {
+        "code": "D1",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D2",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D3",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D4",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D5",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D6",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D10",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D11",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D12",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D7",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D8",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      },
+      {
+        "code": "D9",
+        "zone": "ECONOMY",
+        "status": "AVAILABLE",
+        "price": 20000.0
+      }
+    ]
   },
   {
     "id": 7,
     "name": "New Event",
     "description": "",
     "category": "FESTIVAL",
-    "city": "Armenia",
+    "city": "ARMENIA",
     "date": "2026-05-06",
     "hour": "20:00",
     "state": "PUBLICADO",
@@ -57,10 +668,10 @@
   },
   {
     "id": 8,
-    "name": "aaa",
+    "name": "Nueva obra",
     "description": "",
     "category": "TEATRO",
-    "city": "erasd",
+    "city": "ARMENIA",
     "date": "2026-05-07",
     "hour": "123",
     "state": "PUBLICADO",
@@ -70,10 +681,10 @@
   },
   {
     "id": 9,
-    "name": "a",
+    "name": "Yo y los pibes",
     "description": "",
     "category": "CONFERENCIA",
-    "city": "asd",
+    "city": "CALI",
     "date": "2026-05-30",
     "hour": "123",
     "state": "PUBLICADO",

@@ -2,29 +2,31 @@ package co.edu.uniquindio.poo.evenly.classes.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Event {
     private int id;
     private String name;
     private String description;
     private CategoriaEvento category;
-    private String city;
+    private Cities city;
     private LocalDate date;
     private String hour;
     private EstadoEvento state;
     //    private Recinto recinto;
-//    private List<Zona> zones;
 //    private TiposPoliticas politices;
     private int capacity;
     private double price;
     private String imagePath;
+    private List<Seat> seats =
+            new ArrayList<>();
 
     public Event(
             int id,
             String name,
-                 String city,
+                 Cities city,
                  String venue,
-                 String zone,
                  int capacity,
                  double price,
                  LocalDate date,
@@ -45,7 +47,19 @@ public class Event {
         this.imagePath = imagePath;
     }
 
-//    public TiposPoliticas getPolitices() {
+    public List<Seat> getSeats() {
+        if(seats == null) {
+            seats = new ArrayList<>();
+        }
+
+        return seats;
+    }
+
+    public void setSeats(List<Seat> seats) {
+        this.seats = seats;
+    }
+
+    //    public TiposPoliticas getPolitices() {
 //        return politices;
 //    }
 //
@@ -53,6 +67,13 @@ public class Event {
 //        this.politices = politices;
 //    }
 
+
+    public Cities getCity(){
+        return city;
+    }
+    public void setCity(Cities city) {
+        this.city = city;
+    }
 
     public String getImagePath() {
         return imagePath;
@@ -128,14 +149,6 @@ public class Event {
 
     public void setCategory(CategoriaEvento category) {
         this.category = category;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String ciudad) {
-        this.city = city;
     }
 
     public LocalDate getDate() {

@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.evenly.classes.persistance;
 
+import co.edu.uniquindio.poo.evenly.classes.model.LocalDateTimeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -9,17 +10,27 @@ import java.lang.reflect.Type;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class JsonUtil {
 
     private static final Gson gson =
             new GsonBuilder()
+
                     .registerTypeAdapter(
                             LocalDate.class,
                             new LocalDateAdapter()
                     )
+
+                    .registerTypeAdapter(
+                            LocalDateTime.class,
+                            new LocalDateTimeAdapter()
+                    )
+
                     .setPrettyPrinting()
+
                     .create();
+
 
     public static <T> void save(
             String path,
@@ -36,6 +47,8 @@ public class JsonUtil {
             e.printStackTrace();
         }
     }
+
+
 
     public static <T> T read(
             String path,

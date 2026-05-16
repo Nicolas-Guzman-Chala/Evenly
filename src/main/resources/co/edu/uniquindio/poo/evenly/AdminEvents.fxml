@@ -390,17 +390,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <Label layoutX="251.0" layoutY="319.0" style="-fx-text-fill: #f2e4e4;" text="Zone" textFill="#e1dadacf">
-                                 <font>
-                                    <Font name="Poppins Regular" size="18.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                              <TextField fx:id="textCity" layoutX="37.0" layoutY="352.0" prefHeight="35.0" prefWidth="179.0" promptText="city" />
-                              <TextField fx:id="textZone" layoutX="248.0" layoutY="352.0" prefHeight="35.0" prefWidth="149.0" promptText="zone" />
-                              <Label layoutX="38.0" layoutY="401.0" style="-fx-text-fill: #f2e4e4;" text="Capacity" textFill="#e1dadacf">
+                              <Label layoutX="252.0" layoutY="319.0" style="-fx-text-fill: #f2e4e4;" text="Capacity" textFill="#e1dadacf">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>
@@ -416,8 +406,8 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <TextField fx:id="textCapacity" layoutX="37.0" layoutY="437.0" prefHeight="35.0" prefWidth="180.0" promptText="capacity" />
-                              <Label layoutX="37.0" layoutY="483.0" style="-fx-text-fill: #f2e4e4;" text="Venue" textFill="#e1dadacf">
+                              <TextField fx:id="textCapacity" layoutX="252.0" layoutY="352.0" prefHeight="35.0" prefWidth="145.0" promptText="capacity" />
+                              <Label layoutX="42.0" layoutY="401.0" style="-fx-text-fill: #f2e4e4;" text="Venue" textFill="#e1dadacf">
                                  <font>
                                     <Font name="Poppins Regular" size="18.0" />
                                  </font>
@@ -425,8 +415,8 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <TextField fx:id="textVenue" layoutX="36.0" layoutY="514.0" prefHeight="35.0" prefWidth="180.0" promptText="venue" />
-                              <Button layoutX="239.0" layoutY="511.0" mnemonicParsing="false" onAction="#onCreateEvent" prefHeight="43.0" prefWidth="169.0" styleClass="button-purple" text="Create">
+                              <TextField fx:id="textVenue" layoutX="42.0" layoutY="437.0" prefHeight="35.0" prefWidth="172.0" promptText="venue" />
+                              <Button layoutX="39.0" layoutY="499.0" mnemonicParsing="false" onAction="#onCreateEvent" prefHeight="55.0" prefWidth="369.0" styleClass="button-purple" text="Create">
                                  <font>
                                     <Font name="Poppins SemiBold" size="16.0" />
                                  </font>
@@ -441,6 +431,7 @@
                               </Label>
                               <TextField fx:id="textPrice" layoutX="248.0" layoutY="99.0" prefHeight="35.0" prefWidth="146.0" promptText="Price" />
                               <Button layoutX="248.0" layoutY="437.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="34.0" prefWidth="148.0" styleClass="button-purple" text="Upload Image" />
+                              <ChoiceBox fx:id="pickCity" layoutX="41.0" layoutY="351.0" prefHeight="31.0" prefWidth="174.0" />
                            </children>
                         </AnchorPane>
                      </children>

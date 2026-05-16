@@ -1,20 +1,31 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import java.util.List;
+
 public class User {
-    private String idUser;
+    private int idUser;
     private String fullName;
     private String email;
     private String phone;
     private String password;
     private String imagePath;
+    private List<Purchase> purchaseHistory;
 
-    public User(String idUser, String fullName, String email, String phone, String password, String imagePath) {
+    public User(int idUser, String fullName, String email, String phone, String password, String imagePath) {
         this.idUser = idUser;
         this.fullName = fullName;
         this.email = email;
         this.phone = phone;
         this.password = password;
         this.imagePath = imagePath;
+    }
+
+    public List<Purchase> getPurchaseHistory() {
+        return purchaseHistory;
+    }
+
+    public void setPurchaseHistory(List<Purchase> purchaseHistory) {
+        this.purchaseHistory = purchaseHistory;
     }
 
     public String getImagePath() {
@@ -29,11 +40,11 @@ public class User {
         this.email = email;
     }
 
-    public String getIdUser() {
+    public int getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(String idUser) {
+    public void setIdUser(int idUser) {
         this.idUser = idUser;
     }
 

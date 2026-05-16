@@ -1,42 +1,47 @@
 [
   {
-    "idUser": "USR-001",
-    "fullName": "Juan Esteban Ramirez",
-    "email": "juan.ramirez@gmail.com",
-    "phone": "3104567890",
-    "password": "juan123",
-    "imagePath" : ""
+    "idUser": 1,
+    "fullName": "nicolas",
+    "email": "nicolas@gmail.com",
+    "phone": "123",
+    "password": "123124",
+    "imagePath": "",
+    "purchaseHistory": [
+      {
+        "userEmail": "nicolas@gmail.com",
+        "eventId": 5,
+        "eventName": "National Football Finals",
+        "seatCodes": [
+          "B10",
+          "B17",
+          "B11"
+        ],
+        "paymentMethod": "PAYPAL",
+        "total": 580000.0,
+        "purchaseDate": "2026-05-15T18:12:39.655745900"
+      }
+    ]
   },
   {
-    "idUser": "USR-002",
-    "fullName": "Maria Fernanda Lopez",
-    "email": "maria.lopez@gmail.com",
-    "phone": "3119876543",
-    "password": "maria456",
-    "imagePath" : ""
-  },
-  {
-    "idUser": "USR-003",
-    "fullName": "Carlos Andres Gomez",
-    "email": "carlos.gomez@gmail.com",
-    "phone": "3001122334",
-    "password": "carlos789",
-    "imagePath" : ""
-  },
-  {
-    "idUser": "USR-004",
-    "fullName": "Laura Sofia Martinez",
-    "email": "laura.martinez@gmail.com",
-    "phone": "3156677889",
-    "password": "laura321",
-    "imagePath" : ""
-  },
-  {
-    "idUser": "USR-005",
-    "fullName": "Andres Felipe Torres",
-    "email": "andres.torres@gmail.com",
-    "phone": "3209988776",
-    "password": "andres654",
-    "imagePath" : ""
+    "idUser": 2,
+    "fullName": "Campos",
+    "email": "campos@gmail.com",
+    "phone": "123",
+    "password": "1237617823",
+    "imagePath": "",
+    "purchaseHistory": [
+      {
+        "userEmail": "campos@gmail.com",
+        "eventId": 6,
+        "eventName": "Michel Jackson",
+        "seatCodes": [
+          "B11",
+          "A14"
+        ],
+        "paymentMethod": "PAYPAL",
+        "total": 150000.0,
+        "purchaseDate": "2026-05-16T09:47:44.096630100"
+      }
+    ]
   }
 ]

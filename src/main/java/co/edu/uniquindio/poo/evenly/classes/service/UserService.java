@@ -24,6 +24,21 @@ public class UserService {
         }
     }
 
+    public int generateId() {
+
+        int maxId = 0;
+
+        for(User user : users) {
+
+            if(user.getIdUser() > maxId) {
+
+                maxId = user.getIdUser();
+            }
+        }
+
+        return maxId + 1;
+    }
+
     //Creating the CRUD
 
     //Create
@@ -42,9 +57,9 @@ public class UserService {
 
     //Update
 
-    public void updateUser(String id, User newUser){
+    public void updateUser(int id, User newUser){
         for(int i = 0; i < users.size(); i++){
-            if(users.get(i).getIdUser().equals(id)){
+            if(users.get(i).getIdUser() == id){
                 users.set(i, newUser);
                 save();
                 break;
@@ -52,10 +67,25 @@ public class UserService {
         }
     }
 
+    public User login(String email,
+                      String password) {
+
+        for(User user : users) {
+
+            if(user.getEmail().equals(email) &&
+                    user.getPassword().equals(password)) {
+
+                return user;
+            }
+        }
+
+        return null;
+    }
+
     //Delete
 
-    public void deleteUser(String id){
-        users.removeIf(user -> user.getIdUser().equals(id));
+    public void deleteUser(int id){
+        users.removeIf(user -> user.getIdUser() == id);
 
         save();
     }

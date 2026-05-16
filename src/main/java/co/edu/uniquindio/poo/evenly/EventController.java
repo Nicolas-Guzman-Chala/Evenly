@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
+import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,11 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
 public class EventController {
 
@@ -59,28 +57,71 @@ public class EventController {
     private ImageView user;
 
     @FXML
-    void onApply(ActionEvent event) {
+    void onApply(ActionEvent e) {
+        CategoriaEvento category =
+                categoryPicker.getValue();
 
+        Cities city =
+                cityPicker.getValue();
+
+        double priceMax =
+                MaxPriceRange.getValue();
+
+        List<Event> eventsFiltered =
+                new ArrayList<>();
+
+        for(Event event : eventService.getEvent()) {
+
+            boolean categoryMatch =
+                    category == CategoriaEvento.TODOS ||
+                            event.getCategory().equals(category);
+
+            boolean cityMatch =
+                    city == Cities.TODAS ||
+                            event.getCity().equals(city);
+
+            boolean priceMatch =
+                    event.getPrice() <= priceMax;
+
+            if(categoryMatch &&
+                    cityMatch &&
+                    priceMatch) {
+
+                eventsFiltered.add(event);
+            }
+        }
+
+        renderEvents(eventsFiltered);
     }
 
     @FXML
     void onChangeEvents(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Events.fxml");
     }
 
     @FXML
     void onChangeHome(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Home.fxml");
     }
 
     @FXML
     void onChangeMerchandising(MouseEvent event) {
 
     }
-
     @FXML
     void onChangeProfile(MouseEvent event) {
+        if(UserSession.getCurrentUser() == null) {
 
+            EvenlyApplication.changeScene(
+                    "Register.fxml"
+            );
+
+        } else {
+
+            EvenlyApplication.changeScene(
+                    "Profile.fxml"
+            );
+        }
     }
 
 
@@ -94,7 +135,12 @@ public class EventController {
 
         events = eventService.getEvent();
 
-        renderEvents();
+        categoryPicker.setValue(CategoriaEvento.TODOS);
+        cityPicker.setValue(Cities.TODAS);
+
+        renderEvents(events);
+
+        MaxPriceRange.setValue(500000);
 
         MaxPriceRange.valueProperty().addListener((obs, oldVal, newVal) -> {
 
@@ -103,7 +149,7 @@ public class EventController {
         });
     }
 
-    public void renderEvents(){
+    public void renderEvents(List<Event> events){
 
         flowPane.getChildren().clear();
 

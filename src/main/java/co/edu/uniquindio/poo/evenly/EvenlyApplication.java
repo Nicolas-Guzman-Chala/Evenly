@@ -20,7 +20,7 @@ public class EvenlyApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(EvenlyApplication.class.getResource("/co/edu/uniquindio/poo/evenly/Events.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EvenlyApplication.class.getResource("/co/edu/uniquindio/poo/evenly/Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Evenly");
         stage.setMaximized(true);
@@ -28,24 +28,37 @@ public class EvenlyApplication extends Application {
         stage.show();
     }
 
+    public static Stage getStage() {
+        return stage;
+    }
+
     //change scene from fxml stages
 
-    public static void changeScene(String fxml){
+    public static FXMLLoader changeScene(String fxml){
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    EvenlyApplication.class.getResource(
-                            "/co/edu/uniquindio/poo/evenly/" + fxml
-                    )
-            );
 
-            Scene scene = new Scene(loader.load());
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            EvenlyApplication.class.getResource(
+                                    "/co/edu/uniquindio/poo/evenly/" + fxml
+                            )
+                    );
+
+            Scene scene =
+                    new Scene(loader.load());
 
             stage.setScene(scene);
+
             stage.show();
 
+            return loader;
+
         } catch (IOException e) {
+
             e.printStackTrace();
         }
+
+        return null;
     }
 
     public static class Launcher {

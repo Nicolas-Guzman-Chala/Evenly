@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.evenly;
 
+import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -26,12 +27,12 @@ public class HomeController {
 
     @FXML
     void onChangeEvents(ActionEvent event) {
-
+        EvenlyApplication.changeScene("Events.fxml");
     }
 
     @FXML
     void onChangeHome(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Home.fxml");
     }
 
     @FXML
@@ -41,7 +42,18 @@ public class HomeController {
 
     @FXML
     void onChangeProfile(MouseEvent event) {
+        if(UserSession.getCurrentUser() == null) {
 
+            EvenlyApplication.changeScene(
+                    "Register.fxml"
+            );
+
+        } else {
+
+            EvenlyApplication.changeScene(
+                    "Profile.fxml"
+            );
+        }
     }
 
 }
