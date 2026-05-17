@@ -9,6 +9,11 @@ import java.io.IOException;
 
 public class EvenlyApplication extends Application {
 
+
+    /**
+     * estos de abajito probablemente se pueden eliminar, no aportan nada.
+     * revisar
+     */
     private EvenlyApplication instance;
 
     public EvenlyApplication getInstance() {

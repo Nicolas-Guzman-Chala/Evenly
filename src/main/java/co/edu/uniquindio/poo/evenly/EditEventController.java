@@ -1,6 +1,5 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;

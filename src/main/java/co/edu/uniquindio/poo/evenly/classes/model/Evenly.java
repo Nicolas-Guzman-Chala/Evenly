@@ -4,13 +4,19 @@ public class Evenly {
     private static Evenly instance;
 //    private static User CurrentUser;
 
-    private Evenly(){};
+    private Evenly(){}
 
+    /**
+     * getInstance verificara que siempre haya una sola instancia de
+     * evenly, cumpliendo con el proposito de singleton
+     * @return Evenly
+     */
     public static Evenly getInstance() {
+        if (instance == null) {
+            instance = new Evenly();
+            return instance;
+        }
         return instance;
     }
 
-    public static void setInstance(Evenly instance) {
-        Evenly.instance = instance;
-    }
 }

@@ -5,34 +5,29 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
-    private int id;
-    private String name;
-    private String description;
-    private CategoriaEvento category;
-    private Cities city;
-    private LocalDate date;
-    private String hour;
-    private EstadoEvento state;
-    //    private Recinto recinto;
-//    private TiposPoliticas politices;
-    private int capacity;
-    private double price;
+public abstract class Event {
+    protected int id;
+    protected String name;
+    protected String description;
+    protected String category;
+    protected Cities city;
+    protected LocalDate date;
+    protected String hour;
+    protected EstadoEvento state;
+
+    // int capacity, price, seats todos iran a una nueva clase basada en el composite, tener en cuenta
     private String imagePath;
-    private List<Seat> seats =
-            new ArrayList<>();
+
 
     public Event(
             int id,
             String name,
                  Cities city,
-                 String venue,
-                 int capacity,
-                 double price,
                  LocalDate date,
                  String hour,
-                 CategoriaEvento category,
-                 EstadoEvento state, String description, String imagePath) {
+                 String category,
+                 EstadoEvento state, String description, String imagePath)
+    {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -41,31 +36,50 @@ public class Event {
         this.city = city;
         this.date = date;
         this.state = state;
-//        this.politices = politices;
-        this.capacity = capacity;
-        this.price = price;
         this.imagePath = imagePath;
     }
 
-    public List<Seat> getSeats() {
-        if(seats == null) {
-            seats = new ArrayList<>();
+
+
+public boolean publicarEvento(){
+        if( state == EstadoEvento.BORRADOR ){
+            state=EstadoEvento.PUBLICADO;
+           System.out.println("Publicado");
+            return true;
+        }
+        else{
+            System.out.println("No puede publicar");
+            return false;
+        }
+}
+public boolean cancelarEvento(){
+        if( state == EstadoEvento.PUBLICADO || state == EstadoEvento.PAUSADO ){
+            state=EstadoEvento.CANCELADO;
+            System.out.println("El evento ha sido Cancelado");
+            return true;
+        } else{
+            System.out.println("No puede cancelar");
+            return false;
+        }
+}
+
+public String consultarEvento() {
+       String mensaje = " EVENTO: " + name + " \n Descripcion: "  + description + " \n Categoria: " + category + "\n ciudad: "
+               + city + " \n fecha:  " + date + " \n hora:  " + hour + "\n estado: " + state;
+       return mensaje;
+}
+// esto toca cambiarlo
+    public String consultarDisponibilidadEvento(){
+
+        if(state == EstadoEvento.PUBLICADO){
+
+            return "Este evento está disponible";
         }
 
-        return seats;
+        return "Este evento no está disponible";
     }
 
-    public void setSeats(List<Seat> seats) {
-        this.seats = seats;
-    }
 
-    //    public TiposPoliticas getPolitices() {
-//        return politices;
-//    }
-//
-//    public void setPolitices(TiposPoliticas politices) {
-//        this.politices = politices;
-//    }
 
 
     public Cities getCity(){
@@ -99,26 +113,6 @@ public class Event {
         this.hour = hour;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
     public int getIdEvent() {
         return id;
     }
@@ -143,11 +137,11 @@ public class Event {
         this.description = description;
     }
 
-    public CategoriaEvento getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(CategoriaEvento category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 

@@ -1,6 +1,5 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
@@ -218,6 +217,7 @@ public class AdminEventsController {
             EstadoEvento estado =
                     pickState.getValue();
 
+          //aqui se tendra que usar algo para crear eventos con el tipo, algun choice box o algo por el estilo
             Event newEvent = new Event(
                     id,
                     name,
