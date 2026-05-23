@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.evenly;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatStatus;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatZone;
 import co.edu.uniquindio.poo.evenly.classes.model.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

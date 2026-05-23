@@ -1,6 +1,8 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.AsientoState;
 
-public class BloqueadoState implements AsientoState{
+import co.edu.uniquindio.poo.evenly.classes.model.Asiento;
+
+public class BloqueadoState implements AsientoState {
 
     @Override
     public void reservar(Asiento asiento) {

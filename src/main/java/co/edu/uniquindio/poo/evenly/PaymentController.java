@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.evenly;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.PaymentMethod;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatStatus;
 import co.edu.uniquindio.poo.evenly.classes.model.*;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import co.edu.uniquindio.poo.evenly.classes.service.PurchaseService;

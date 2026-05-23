@@ -1,6 +1,10 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
-public class Asiento implements  ComponenteZona{
+import co.edu.uniquindio.poo.evenly.classes.model.AsientoState.AsientoState;
+import co.edu.uniquindio.poo.evenly.classes.model.AsientoState.DisponibleState;
+import co.edu.uniquindio.poo.evenly.classes.model.Composite.ComponenteZona;
+
+public class Asiento implements ComponenteZona {
     private String idAsiento;
     private String fila;
     private int numero;

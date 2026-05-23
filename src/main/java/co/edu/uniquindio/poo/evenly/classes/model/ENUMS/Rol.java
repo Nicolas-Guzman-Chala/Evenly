@@ -1,0 +1,5 @@
+package co.edu.uniquindio.poo.evenly.classes.model.ENUMS;
+
+public enum Rol {
+    USUARIO, ADMIN
+}

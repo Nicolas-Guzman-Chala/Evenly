@@ -1,5 +1,8 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
+
 import java.time.LocalDate;
 
 public class Teatro extends Event {
@@ -7,14 +10,14 @@ public class Teatro extends Event {
     private String director;
     private String actores;
     private String tema;
-    public Teatro(String Autor, String director, String actores, String tema,   int id,
+    public Teatro(String Autor, String director, String actores, String tema, int id,
                   String name,
                   Cities city,
                   LocalDate date,
                   String hour,
                   String category,
-                  EstadoEvento state, String description, String imagePath) {
-        super(id, name, city, date, hour, category, state, description, imagePath);
+                  EstadoEvento state, String description, String imagePath, Recinto recinto) {
+        super(id, name, city, date, hour, category, state, description, imagePath, recinto);
         this.autor = Autor;
         this.director = director;
         this.actores = actores;

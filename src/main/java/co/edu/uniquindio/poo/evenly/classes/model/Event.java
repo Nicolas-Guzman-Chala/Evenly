@@ -1,9 +1,9 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
+
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Event {
     protected int id;
@@ -14,20 +14,13 @@ public abstract class Event {
     protected LocalDate date;
     protected String hour;
     protected EstadoEvento state;
-
-    // int capacity, price, seats todos iran a una nueva clase basada en el composite, tener en cuenta
+    protected Recinto recinto;
     private String imagePath;
 
 
-    public Event(
-            int id,
-            String name,
-                 Cities city,
-                 LocalDate date,
-                 String hour,
-                 String category,
-                 EstadoEvento state, String description, String imagePath)
+    public Event(int id, String name, Cities city, LocalDate date, String hour, String category, EstadoEvento state, String description, String imagePath, Recinto recinto)
     {
+
         this.id = id;
         this.name = name;
         this.description = description;
@@ -37,11 +30,19 @@ public abstract class Event {
         this.date = date;
         this.state = state;
         this.imagePath = imagePath;
+        this.recinto = recinto;
     }
 
 
+    public Recinto getRecinto() {
+        return recinto;
+    }
 
-public boolean publicarEvento(){
+    public void setRecinto(Recinto recinto) {
+        this.recinto = recinto;
+    }
+
+    public boolean publicarEvento(){
         if( state == EstadoEvento.BORRADOR ){
             state=EstadoEvento.PUBLICADO;
            System.out.println("Publicado");

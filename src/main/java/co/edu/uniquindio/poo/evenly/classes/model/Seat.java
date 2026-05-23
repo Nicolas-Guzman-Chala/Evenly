@@ -1,5 +1,8 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatStatus;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatZone;
+
 public class Seat {
 
     private String code;

@@ -1,4 +1,9 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.Factory;
+
+import co.edu.uniquindio.poo.evenly.classes.model.Concierto;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.Event;
 
 import java.time.LocalDate;
 

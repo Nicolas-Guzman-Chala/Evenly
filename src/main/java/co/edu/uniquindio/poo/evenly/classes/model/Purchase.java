@@ -1,5 +1,7 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.PaymentMethod;
+
 import java.time.LocalDateTime;
 import java.util.List;
 

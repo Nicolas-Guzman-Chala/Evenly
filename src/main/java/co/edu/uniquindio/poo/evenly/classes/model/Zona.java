@@ -1,7 +1,10 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.TipoZona;
+import co.edu.uniquindio.poo.evenly.classes.model.Composite.ComponenteZona;
+
 import java.util.ArrayList;
 import java.util.List;
-public class Zona implements ComponenteZona{
+public class Zona implements ComponenteZona {
     private String idZona;
     private String nombre;
     private int capacidad;

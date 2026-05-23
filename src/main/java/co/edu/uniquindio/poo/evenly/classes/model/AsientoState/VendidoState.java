@@ -1,6 +1,8 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.AsientoState;
 
-public class VendidoState implements AsientoState{
+import co.edu.uniquindio.poo.evenly.classes.model.Asiento;
+
+public class VendidoState implements AsientoState {
     @Override
     public void reservar(Asiento asiento) {
         System.out.println("el asiento ya esta vendido, no se puede reservar");

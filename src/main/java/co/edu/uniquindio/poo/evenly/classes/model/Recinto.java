@@ -1,4 +1,6 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+
 import java.util.List;
 import java.util.ArrayList;
 

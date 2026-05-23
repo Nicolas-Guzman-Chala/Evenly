@@ -1,8 +1,8 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.AsientoState;
 
-import java.io.Serializable;
+import co.edu.uniquindio.poo.evenly.classes.model.Asiento;
 
-public class DisponibleState implements AsientoState{
+public class DisponibleState implements AsientoState {
 
 
     @Override
