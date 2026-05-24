@@ -1,15 +1,16 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
-import co.edu.uniquindio.poo.evenly.classes.model.Cities;
-import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.Evenly;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
+import co.edu.uniquindio.poo.evenly.classes.service.ImageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -20,8 +21,28 @@ public class EditEventController {
 
     private Event event;
 
-    private EventService eventService =
-            new EventService();
+    private final EventService eventService;
+
+    private final SceneManager sceneManager;
+
+    private final ImageService imageService;
+
+    private String imagePath;
+
+    public EditEventController() {
+
+        Evenly evenly =
+                Evenly.getInstance();
+
+        this.eventService =
+                evenly.getEventService();
+
+        this.sceneManager =
+                evenly.getSceneManager();
+
+        this.imageService =
+                evenly.getImageService();
+    }
 
     @FXML
     private DatePicker dateEventPicker;
@@ -53,128 +74,198 @@ public class EditEventController {
     @FXML
     private TextField textVenue;
 
-
     @FXML
     public void initialize() {
 
-        pickCategory.getItems()
-                .addAll(CategoriaEvento.values());
+        loadChoiceBoxes();
+    }
 
-        pickState.getItems()
-                .addAll(EstadoEvento.values());
+    private void loadChoiceBoxes(){
 
-        pickCity.getItems()
-                .addAll(Cities.values());
+        pickCategory
+                .getItems()
+                .addAll(
+                        CategoriaEvento.values()
+                );
+
+        pickState
+                .getItems()
+                .addAll(
+                        EstadoEvento.values()
+                );
+
+        pickCity
+                .getItems()
+                .addAll(
+                        Cities.values()
+                );
     }
 
     public void setEvent(Event event) {
 
         this.event = event;
 
-        inputNameEvent.setText(event.getName());
-
-        pickCity.setValue(event.getCity());
-
-//        textVenue.setText(event.getVenue());
-
-        textCapacity.setText(
-                String.valueOf(event.getCapacity())
+        pickCategory.setValue(
+                event.getCategory()
         );
 
-        textPrice.setText(
-                String.valueOf(event.getPrice())
+        pickCategory.setDisable(true);
+
+        loadEventData();
+    }
+
+    private void loadEventData(){
+
+        inputNameEvent.setText(
+                event.getName()
         );
 
-        hourEvent.setText(event.getHour());
+        pickCity.setValue(
+                event.getCity()
+        );
 
-        dateEventPicker.setValue(event.getDate());
+        hourEvent.setText(
+                event.getHour()
+        );
 
-        pickCategory.setValue(event.getCategory());
+        dateEventPicker.setValue(
+                event.getDate()
+        );
 
-        pickState.setValue(event.getState());
+        pickCategory.setValue(
+                event.getCategory()
+        );
 
-        if (event.getImagePath() != null &&
-                !event.getImagePath().isEmpty()) {
+        pickState.setValue(
+                event.getState()
+        );
 
-            imgEvent.setImage(
-                    new Image(
-                            new File(event.getImagePath())
-                                    .toURI()
-                                    .toString()
-                    )
-            );
+        imagePath =
+                event.getImagePath();
+
+        loadImage();
+    }
+
+    private void loadImage(){
+
+        if(imagePath == null ||
+                imagePath.isBlank()){
+
+            return;
+        }
+
+        File file =
+                new File(imagePath);
+
+        if(!file.exists()){
+
+            return;
+        }
+
+        imgEvent.setImage(
+
+                new Image(
+
+                        file.toURI()
+                                .toString()
+                )
+        );
+    }
+
+    @FXML
+    void uploadImage(ActionEvent event){
+
+        String newImagePath =
+                imageService.saveEventImage();
+
+        if(newImagePath != null){
+
+            imagePath = newImagePath;
+
+            loadImage();
         }
     }
 
     @FXML
-    void onEditEvent(ActionEvent e) {
+    void onEditEvent(ActionEvent actionEvent) {
 
         try {
 
-            event.setName(
-                    inputNameEvent.getText()
+            updateEventData();
+
+            eventService.updateEvent(
+                    event.getId(),
+                    event
             );
-
-            event.setCity(
-                    pickCity.getValue()
-            );
-
-//            event.setVenue(
-//                    textVenue.getText()
-//            );
-//
-
-            event.setCapacity(
-                    Integer.parseInt(
-                            textCapacity.getText()
-                    )
-            );
-
-            event.setPrice(
-                    Double.parseDouble(
-                            textPrice.getText()
-                    )
-            );
-
-            event.setHour(
-                    hourEvent.getText()
-            );
-
-            event.setDate(
-                    dateEventPicker.getValue()
-            );
-
-            event.setCategory(
-                    pickCategory.getValue()
-            );
-
-            event.setState(
-                    pickState.getValue()
-            );
-
-            eventService.updateEvent(event.getId(),event);
 
             closeWindow();
 
-            EvenlyApplication.changeScene("AdminEvents.fxml");
+            sceneManager.openAdminEvents();
 
-            System.out.println(
+            showAlert(
+                    Alert.AlertType.INFORMATION,
                     "Evento actualizado correctamente"
             );
 
-        } catch (Exception ex) {
+        } catch (Exception e){
 
-            ex.printStackTrace();
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    e.getMessage()
+            );
         }
     }
 
-    public void closeWindow() {
+    private void updateEventData(){
 
-        Stage stage = (Stage)
-                inputNameEvent
+        event.setName(
+                inputNameEvent.getText()
+        );
+
+        event.setCity(
+                pickCity.getValue()
+        );
+
+        event.setHour(
+                hourEvent.getText()
+        );
+
+        event.setDate(
+                dateEventPicker.getValue()
+        );
+
+        event.setState(
+                pickState.getValue()
+        );
+
+        event.setImagePath(
+                imagePath
+        );
+    }
+
+    private void closeWindow() {
+
+        Stage stage =
+
+                (Stage) inputNameEvent
                         .getScene()
                         .getWindow();
 
         stage.close();
+    }
+
+    private void showAlert(
+            Alert.AlertType type,
+            String message
+    ){
+
+        Alert alert =
+                new Alert(type);
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

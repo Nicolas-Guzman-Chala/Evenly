@@ -1,8 +1,10 @@
 package co.edu.uniquindio.poo.evenly.classes.persistance;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.LocalDateTimeAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -26,6 +28,9 @@ public class JsonUtil {
                             LocalDateTime.class,
                             new LocalDateTimeAdapter()
                     )
+            .registerTypeAdapter(CategoriaEvento.class,
+                    (JsonDeserializer<CategoriaEvento>) (json, type, context) ->
+                            CategoriaEvento.valueOf(json.getAsString()))
 
                     .setPrettyPrinting()
 

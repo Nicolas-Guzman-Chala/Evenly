@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="77.0" prefWidth="370.0" style="-fx-background-color: transparent; -fx-border-color: #8984bf; -fx-border-radius: 12px;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.evenly.AdminCardUserRecentController">
+   <children>
+      <AnchorPane prefHeight="64.0" prefWidth="100.0">
+         <children>
+            <ImageView fx:id="imgUser" fitHeight="67.0" fitWidth="76.0" layoutX="23.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" style="-fx-background-radius: 50%; -fx-border-radius: 50%;" styleClass="img-rounded">
+               <image>
+                  <Image url="@imgs/user-icon.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+      <VBox prefHeight="98.0" prefWidth="288.0">
+         <children>
+            <AnchorPane prefHeight="49.0" prefWidth="278.0">
+               <children>
+                  <Label fx:id="textName" layoutX="14.0" layoutY="6.0" text="Name" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins SemiBold" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="54.0" prefWidth="319.0">
+               <children>
+                  <Line endX="126.0" layoutX="115.0" startX="-100.0" stroke="#8984bf" />
+                  <Label fx:id="textTickets" layoutX="15.0" layoutY="12.0" text="Tickets" textFill="WHITE">
+                     <font>
+                        <Font name="Poppins Regular" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="textIncome" layoutX="105.0" layoutY="12.0" style="-fx-text-fill: #b93bc9;" text="Income" textFill="#b93bc9">
+                     <font>
+                        <Font name="Poppins Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</HBox>

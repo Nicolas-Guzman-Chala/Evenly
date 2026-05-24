@@ -10,7 +10,8 @@ module co.edu.uniquindio.poo.evenly {
             to javafx.fxml;
 
     opens co.edu.uniquindio.poo.evenly.classes.model
-            to com.google.gson;
+            to com.google.gson, javafx.base;
 
     exports co.edu.uniquindio.poo.evenly;
+    opens co.edu.uniquindio.poo.evenly.classes.model.ENUMS to com.google.gson;
 }

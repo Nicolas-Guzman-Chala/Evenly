@@ -1,35 +1,51 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
-import co.edu.uniquindio.poo.evenly.classes.model.Cities;
-import co.edu.uniquindio.poo.evenly.classes.model.EstadoEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.TipoZona;
+import co.edu.uniquindio.poo.evenly.classes.model.Evenly;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
+import co.edu.uniquindio.poo.evenly.classes.model.Recinto;
+import co.edu.uniquindio.poo.evenly.classes.model.EventFactoryDTO.CreateEventDTO;
+import co.edu.uniquindio.poo.evenly.classes.model.Zona;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
+import co.edu.uniquindio.poo.evenly.classes.service.ImageService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class AdminEventsController {
 
-    private EventService eventService =
-            new EventService();
+    private final EventService eventService;
+
+    private final SceneManager sceneManager;
+
+    private final ImageService imageService;
 
     private List<Event> events = new ArrayList<>();
 
     private String imagePath;
+
+    public AdminEventsController(){
+
+        Evenly evenly = Evenly.getInstance();
+
+        this.eventService = evenly.getEventService();
+
+        this.sceneManager = evenly.getSceneManager();
+
+        this.imageService = evenly.getImageService();
+    }
 
     @FXML
     private ChoiceBox<CategoriaEvento> pickCategory;
@@ -38,116 +54,228 @@ public class AdminEventsController {
     private ChoiceBox<EstadoEvento> pickState;
 
     @FXML
+    private ChoiceBox<Cities> pickCity;
+
+    @FXML
     private DatePicker dateEventPicker;
 
     @FXML
     private TextField hourEvent;
 
     @FXML
-    private ImageView imgUser;
-
-    @FXML
     private TextField inputNameEvent;
-
-    @FXML
-    private TextField textCapacity;
-
-    @FXML
-    private ChoiceBox<Cities> pickCity;
-
-    @FXML
-    private Label textName;
-
-    @FXML
-    private TextField textPrice;
 
     @FXML
     private TextField textVenue;
 
     @FXML
+    private TextField textCapacity;
+
+    @FXML
+    private TextField textPrice;
+
+    @FXML
     private VBox vBoxContainer;
+
+    @FXML
+    private ImageView imgUser;
 
     @FXML
     public void initialize(){
 
-        pickCategory.getItems().addAll(CategoriaEvento.values());
+        loadChoiceBoxes();
 
-        pickState.getItems().addAll(EstadoEvento.values());
+        refreshEvents();
+    }
 
-        pickCity.getItems().addAll(Cities.values());
-        events = eventService.getEvent();
+    private void loadChoiceBoxes(){
+
+        pickCategory.getItems().addAll(
+                CategoriaEvento.values()
+        );
+
+        pickState.getItems().addAll(
+                EstadoEvento.values()
+        );
+
+        pickCity.getItems().addAll(
+                Cities.values()
+        );
+    }
+
+    @FXML
+    void uploadImage(){
+
+        imagePath = imageService.saveEventImage();
+    }
+
+    @FXML
+    void onCreateEvent(ActionEvent event){
+
+        try {
+
+            CreateEventDTO dto = buildDTO();
+
+            eventService.createEvent(dto);
+
+            refreshEvents();
+
+            clearFields();
+
+            showAlert(
+                    Alert.AlertType.INFORMATION,
+                    "Evento creado correctamente"
+            );
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    e.getMessage()
+            );
+        }
+    }
+
+    private CreateEventDTO buildDTO(){
+
+        if(inputNameEvent.getText().isEmpty()){
+            throw new RuntimeException(
+                    "Ingrese el nombre del evento"
+            );
+        }
+
+        if(pickCity.getValue() == null){
+            throw new RuntimeException(
+                    "Seleccione una ciudad"
+            );
+        }
+
+        if(dateEventPicker.getValue() == null){
+            throw new RuntimeException(
+                    "Seleccione una fecha"
+            );
+        }
+
+        if(hourEvent.getText().isEmpty()){
+            throw new RuntimeException(
+                    "Ingrese una hora"
+            );
+        }
+
+        if(textVenue.getText().isEmpty()){
+            throw new RuntimeException(
+                    "Ingrese un recinto"
+            );
+        }
+
+        if(textCapacity.getText().isEmpty()){
+            throw new RuntimeException(
+                    "Ingrese una capacidad"
+            );
+        }
+
+        if(textPrice.getText().isEmpty()){
+            throw new RuntimeException(
+                    "Ingrese un precio"
+            );
+        }
+
+            Recinto recinto = new Recinto(
+                    java.util.UUID.randomUUID().toString(),
+                    textVenue.getText(),
+                    textVenue.getText(),
+                    pickCity.getValue()
+            );
+
+            Zona vip = new Zona(
+                    java.util.UUID.randomUUID().toString(),
+                    "VIP",
+                    50,
+                    Double.parseDouble(textPrice.getText()) * 2,
+                    TipoZona.VIP
+            );
+
+            Zona general = new Zona(
+                    java.util.UUID.randomUUID().toString(),
+                    "GENERAL",
+                    100,
+                    Double.parseDouble(textPrice.getText()),
+                    TipoZona.GENERAL
+            );
+
+        Zona preferencial = new Zona(
+                java.util.UUID.randomUUID().toString(),
+                "GENERAL",
+                100,
+                Double.parseDouble(textPrice.getText()),
+                TipoZona.PREFERENCIAL
+        );
+
+        Zona economy = new Zona(
+                java.util.UUID.randomUUID().toString(),
+                "GENERAL",
+                100,
+                Double.parseDouble(textPrice.getText()),
+                TipoZona.ECONOMY
+        );
+
+            recinto.agregarZona(vip);
+            recinto.agregarZona(general);
+            recinto.agregarZona(preferencial);
+            recinto.agregarZona(economy);
+
+            return new CreateEventDTO(
+
+                    inputNameEvent.getText(),
+
+                    pickCity.getValue(),
+
+                    dateEventPicker.getValue(),
+
+                    hourEvent.getText(),
+
+                    pickCategory.getValue(),
+
+                    pickState.getValue(),
+
+                    imagePath,
+
+                    recinto,
+
+                    Double.parseDouble(textPrice.getText())
+            );
+    }
+
+    private void refreshEvents(){
+
+        events = eventService.getEvents();
+
+        if(events == null){
+
+            events = new ArrayList<>();
+        }
 
         renderEvents();
     }
 
-    @FXML
-    void uploadImage() {
+    private void renderEvents(){
 
-        FileChooser fileChooser = new FileChooser();
-
-        fileChooser.getExtensionFilters().add(
-                new FileChooser.ExtensionFilter(
-                        "Imágenes",
-                        "*.png",
-                        "*.jpg",
-                        "*.jpeg"
-                )
-        );
-
-        File file = fileChooser.showOpenDialog(null);
-
-        if (file != null) {
-
-            try {
-
-                File folder = new File("storage/images");
-
-                if (!folder.exists()) {
-                    folder.mkdirs();
-                }
-
-                String fileName =
-                        System.currentTimeMillis()
-                                + "_"
-                                + file.getName();
-
-                File destination = new File(
-                        folder,
-                        fileName
-                );
-
-                java.nio.file.Files.copy(
-                        file.toPath(),
-                        destination.toPath(),
-                        java.nio.file.StandardCopyOption.REPLACE_EXISTING
-                );
-
-                imagePath = destination
-                        .getAbsolutePath()
-                        .replace("\\", "/");
-
-                System.out.println("Imagen guardada: " + imagePath);
-
-            } catch (Exception e) {
-
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public void renderEvents(){
-
-        vBoxContainer.getChildren().clear();
+        vBoxContainer
+                .getChildren()
+                .clear();
 
         for(Event event : events){
 
             try {
 
-                FXMLLoader loader = new FXMLLoader(
-                        getClass().getResource(
-                                "/co/edu/uniquindio/poo/evenly/AdminCardEvent.fxml"
-                        )
-                );
+                FXMLLoader loader =
+                        new FXMLLoader(
+                                getClass().getResource(
+                                        "/co/edu/uniquindio/poo/evenly/AdminCardEvent.fxml"
+                                )
+                        );
 
                 Parent card = loader.load();
 
@@ -168,99 +296,67 @@ public class AdminEventsController {
     }
 
     @FXML
-    void onChangeDashboard(MouseEvent event) {
-        EvenlyApplication.changeScene("AdminDashboard.fxml");
+    void onChangeDashboard(MouseEvent event){
+
+        sceneManager.openAdminDashboard();
     }
 
     @FXML
-    void onChangeEvents(MouseEvent event) {
-        EvenlyApplication.changeScene("AdminSales.fxml");
+    void onChangeEvents(MouseEvent event){
+
+        sceneManager.openAdminEvents();
     }
 
     @FXML
-    void onChangeReports(MouseEvent event) {
-
-    }
-
-    @FXML
-    void onChangeUsers(MouseEvent event) {
-        EvenlyApplication.changeScene("AdminUsers.fxml");
-    }
-
-    @FXML
-    void onChangelogout(MouseEvent event) {
+    void onChangeReports(MouseEvent event){
 
     }
 
     @FXML
-    void onCreateEvent(ActionEvent event) {
+    void onChangeUsers(MouseEvent event){
 
-        try {
-
-            int id = events.size() + 1;
-
-            String name = inputNameEvent.getText();
-
-            Cities city = pickCity.getValue();
-
-            String venue = textVenue.getText();
-
-
-            int capacity = Integer.parseInt(textCapacity.getText());
-
-            double price = Double.parseDouble(textPrice.getText());
-
-            String hour = hourEvent.getText();
-
-            CategoriaEvento categoria =
-                    pickCategory.getValue();
-
-            EstadoEvento estado =
-                    pickState.getValue();
-
-            Event newEvent = new Event(
-                    id,
-                    name,
-                    city,
-                    venue,
-                    capacity,
-                    price,
-                    dateEventPicker.getValue(),
-                    hour,
-                    categoria,
-                    estado,
-                    "",
-                    imagePath
-            );
-
-            eventService.createEvent(newEvent);
-
-            events = eventService.getEvent();
-
-            renderEvents();
-
-            clearFields();
-
-            System.out.println("Evento creado correctamente");
-
-        } catch (Exception e){
-
-            System.out.println("Error al crear evento");
-
-            e.printStackTrace();
-        }
+        sceneManager.openAdminUsers();
     }
 
-    public void clearFields(){
+    @FXML
+    void onChangelogout(MouseEvent event){
+
+    }
+
+    private void clearFields(){
 
         inputNameEvent.clear();
-        pickCity.setValue(null);
+
         textVenue.clear();
+
         textCapacity.clear();
+
         textPrice.clear();
+
         hourEvent.clear();
-        dateEventPicker.setValue(null);
+
         pickCategory.setValue(null);
+
         pickState.setValue(null);
+
+        pickCity.setValue(null);
+
+        dateEventPicker.setValue(null);
+
+        imagePath = null;
+    }
+
+    private void showAlert(
+            Alert.AlertType type,
+            String message
+    ){
+
+        Alert alert = new Alert(type);
+
+        alert.setHeaderText(null);
+
+        alert.setContentText(message);
+
+        alert.showAndWait();
     }
 }

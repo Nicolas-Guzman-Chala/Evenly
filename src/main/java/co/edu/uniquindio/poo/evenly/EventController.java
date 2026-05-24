@@ -1,10 +1,12 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.CategoriaEvento;
-import co.edu.uniquindio.poo.evenly.classes.model.Cities;
+import co.edu.uniquindio.poo.evenly.classes.model.Evenly;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,23 +19,31 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EventController {
 
-    private EventService eventService =
-            new EventService();
+    private final EventService eventService;
 
-    private List<Event> events =
-            new ArrayList<>();
+    private final SceneManager sceneManager;
+
+    public EventController() {
+
+        Evenly evenly =
+                Evenly.getInstance();
+
+        this.eventService =
+                evenly.getEventService();
+
+        this.sceneManager =
+                evenly.getSceneManager();
+    }
 
     @FXML
     private Slider MaxPriceRange;
 
     @FXML
     private Label labelPrice;
-
 
     @FXML
     private ChoiceBox<CategoriaEvento> categoryPicker;
@@ -57,99 +67,81 @@ public class EventController {
     private ImageView user;
 
     @FXML
-    void onApply(ActionEvent e) {
-        CategoriaEvento category =
-                categoryPicker.getValue();
-
-        Cities city =
-                cityPicker.getValue();
-
-        double priceMax =
-                MaxPriceRange.getValue();
-
-        List<Event> eventsFiltered =
-                new ArrayList<>();
-
-        for(Event event : eventService.getEvent()) {
-
-            boolean categoryMatch =
-                    category == CategoriaEvento.TODOS ||
-                            event.getCategory().equals(category);
-
-            boolean cityMatch =
-                    city == Cities.TODAS ||
-                            event.getCity().equals(city);
-
-            boolean priceMatch =
-                    event.getPrice() <= priceMax;
-
-            if(categoryMatch &&
-                    cityMatch &&
-                    priceMatch) {
-
-                eventsFiltered.add(event);
-            }
-        }
-
-        renderEvents(eventsFiltered);
-    }
-
-    @FXML
-    void onChangeEvents(MouseEvent event) {
-        EvenlyApplication.changeScene("Events.fxml");
-    }
-
-    @FXML
-    void onChangeHome(MouseEvent event) {
-        EvenlyApplication.changeScene("Home.fxml");
-    }
-
-    @FXML
-    void onChangeMerchandising(MouseEvent event) {
-
-    }
-    @FXML
-    void onChangeProfile(MouseEvent event) {
-        if(UserSession.getCurrentUser() == null) {
-
-            EvenlyApplication.changeScene(
-                    "Register.fxml"
-            );
-
-        } else {
-
-            EvenlyApplication.changeScene(
-                    "Profile.fxml"
-            );
-        }
-    }
-
-
-
-    @FXML
     public void initialize(){
 
-        categoryPicker.getItems().addAll(CategoriaEvento.values());
+        loadFilters();
 
-        cityPicker.getItems().addAll(Cities.values());
+        configurePriceSlider();
 
-        events = eventService.getEvent();
-
-        categoryPicker.setValue(CategoriaEvento.TODOS);
-        cityPicker.setValue(Cities.TODAS);
-
-        renderEvents(events);
-
-        MaxPriceRange.setValue(500000);
-
-        MaxPriceRange.valueProperty().addListener((obs, oldVal, newVal) -> {
-
-            labelPrice.setText("$" + newVal.intValue());
-
-        });
+        renderEvents(
+                eventService.getEvents()
+        );
     }
 
-    public void renderEvents(List<Event> events){
+    private void loadFilters(){
+
+        categoryPicker
+                .getItems()
+                .addAll(
+                        CategoriaEvento.values()
+                );
+
+        cityPicker
+                .getItems()
+                .addAll(
+                        Cities.values()
+                );
+
+        categoryPicker.setValue(
+                CategoriaEvento.TODOS
+        );
+
+        cityPicker.setValue(
+                Cities.TODAS
+        );
+    }
+
+    private void configurePriceSlider(){
+
+        MaxPriceRange.setValue(
+                500000
+        );
+
+        labelPrice.setText(
+                "$500000"
+        );
+
+        MaxPriceRange
+                .valueProperty()
+                .addListener((obs, oldVal, newVal) -> {
+
+                    labelPrice.setText(
+                            "$" + newVal.intValue()
+                    );
+                });
+    }
+
+    @FXML
+    void onApply(ActionEvent event) {
+
+        List<Event> filteredEvents =
+                eventService.filterEvents(
+
+                        categoryPicker.getValue(),
+
+                        cityPicker.getValue(),
+
+                        MaxPriceRange.getValue(),
+
+                        datePicker.getValue()
+                );
+
+        renderEvents(filteredEvents);
+    }
+
+    private void renderEvents(
+            List<Event> events
+    ){
 
         flowPane.getChildren().clear();
 
@@ -164,14 +156,17 @@ public class EventController {
                                 )
                         );
 
-                Parent card = loader.load();
+                Parent card =
+                        loader.load();
 
                 EventCardController controller =
                         loader.getController();
 
                 controller.setEvent(event);
 
-                flowPane.getChildren().add(card);
+                flowPane
+                        .getChildren()
+                        .add(card);
 
             } catch (Exception e){
 
@@ -179,5 +174,34 @@ public class EventController {
             }
         }
     }
-}
 
+    @FXML
+    void onChangeEvents(MouseEvent event) {
+
+        sceneManager.openEvents();
+    }
+
+    @FXML
+    void onChangeHome(MouseEvent event) {
+
+        sceneManager.openHome();
+    }
+
+    @FXML
+    void onChangeMerchandising(MouseEvent event) {
+
+    }
+
+    @FXML
+    void onChangeProfile(MouseEvent event) {
+
+        if(UserSession.getCurrentUser() == null){
+
+            sceneManager.openRegister();
+
+        } else {
+
+            sceneManager.openProfile();
+        }
+    }
+}

@@ -1,26 +1,22 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.PaymentMethod;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class Purchase {
 
     private String userEmail;
-
-    private int eventId;
-
+    private String eventId;
     private String eventName;
-
     private List<String> seatCodes;
-
     private PaymentMethod paymentMethod;
-
     private double total;
-
     private LocalDateTime purchaseDate;
 
     public Purchase(String userEmail,
-                    int eventId,
+                    String eventId,
                     String eventName,
                     List<String> seatCodes,
                     PaymentMethod paymentMethod,
@@ -40,7 +36,7 @@ public class Purchase {
         return userEmail;
     }
 
-    public int getEventId() {
+    public String getEventId() {
         return eventId;
     }
 

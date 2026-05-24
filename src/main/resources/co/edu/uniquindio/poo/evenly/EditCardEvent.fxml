@@ -82,15 +82,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Label>
-      <Label layoutX="47.0" layoutY="570.0" style="-fx-text-fill: #f2e4e4;" text="Zone" textFill="#e1dadacf">
-         <font>
-            <Font name="Poppins Regular" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
-      <TextField fx:id="textZone" layoutX="46.0" layoutY="601.0" prefHeight="35.0" prefWidth="180.0" promptText="zone" />
       <Label layoutX="48.0" layoutY="411.0" style="-fx-text-fill: #f2e4e4;" text="Capacity" textFill="#e1dadacf">
          <font>
             <Font name="Poppins Regular" size="18.0" />
@@ -109,7 +100,7 @@
          </cursor>
       </Label>
       <TextField fx:id="textVenue" layoutX="46.0" layoutY="524.0" prefHeight="35.0" prefWidth="180.0" promptText="venue" />
-      <Button layoutX="342.0" layoutY="588.0" mnemonicParsing="false" onAction="#onEditEvent" prefHeight="52.0" prefWidth="180.0" styleClass="button-purple" text="Edit Event">
+      <Button layoutX="165.0" layoutY="588.0" mnemonicParsing="false" onAction="#onEditEvent" prefHeight="52.0" prefWidth="357.0" styleClass="button-purple" text="Edit Event">
          <font>
             <Font name="Poppins SemiBold" size="16.0" />
          </font>

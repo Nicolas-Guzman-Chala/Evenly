@@ -1,5 +1,9 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Rol;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoStrategy;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
@@ -9,7 +13,9 @@ public class User {
     private String phone;
     private String password;
     private String imagePath;
-    private List<Purchase> purchaseHistory;
+    private List<Compra> purchaseHistory = new ArrayList<>();
+    private Rol rol;
+    private List<PagoStrategy> metodosPago = new ArrayList<>();
 
     public User(int idUser, String fullName, String email, String phone, String password, String imagePath) {
         this.idUser = idUser;
@@ -20,11 +26,20 @@ public class User {
         this.imagePath = imagePath;
     }
 
-    public List<Purchase> getPurchaseHistory() {
+    public List<PagoStrategy> getMetodosPago() {
+        return metodosPago;
+    }
+
+
+    public void setMetodosPago(List<PagoStrategy> metodosPago) {
+        this.metodosPago = metodosPago;
+    }
+
+    public List<Compra> getPurchaseHistory() {
         return purchaseHistory;
     }
 
-    public void setPurchaseHistory(List<Purchase> purchaseHistory) {
+    public void setPurchaseHistory(List<Compra> purchaseHistory) {
         this.purchaseHistory = purchaseHistory;
     }
 

@@ -1,4 +1,4 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.ENUMS;
 
 public enum EstadoEvento {
     BORRADOR,

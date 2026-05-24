@@ -1,6 +1,8 @@
 package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.*;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatStatus;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatZone;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,10 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SeeDetailsEventController {
 
@@ -81,64 +80,99 @@ public class SeeDetailsEventController {
     @FXML
     private Label textPriceVIP;
 
-    @FXML
-    private ImageView user;
-
-    private Map<Button, Seat> seatMap =
-            new HashMap<>();
-
-    private List<Seat> selectedSeats =
-            new ArrayList<>();
+    private Map<Button, Seat> seatMap = new HashMap<>();
+    private List<Seat> selectedSeats = new ArrayList<>();
 
     @FXML
     public void initialize() {
-        for(Node node : seatPane.getChildren()) {
 
-            if(node instanceof Button button) {
+        for (Node node : seatPane.getChildren()) {
 
-                button.setOnAction(e -> {
+            if (node instanceof Button button) {
 
-                    handleSeat(button);
-
-                });
+                button.setOnAction(e -> handleSeat(button));
             }
         }
+    }
+
+    public void setEvent(Event event) {
+
+        this.event = event;
+
+        if (event == null) return;
+
+        TextNameEvent.setText(event.getName());
+        TextDescription.setText(event.getDescription());
+
+        TextTypeCategory.setText(
+                event.getCategory() != null ? event.getCategory().toString() : "N/A"
+        );
+
+        if (event.getRecinto() != null) {
+            TextVenueAndCity.setText(
+                    event.getRecinto().getNombre() + " - " +
+                            event.getRecinto().getCity()
+            );
+        } else {
+            TextVenueAndCity.setText("No venue");
+        }
+
+        textDate.setText(
+                event.getDate() != null ? event.getDate().toString() : "No date"
+        );
+
+        textHour.setText(
+                event.getHour() != null ? event.getHour().toString() : "No hour"
+        );
+
+        loadPrices();
+
+        TextNameEvent.setText(event.getName());
+        TextDescription.setText(event.getDescription());
+        TextVenueAndCity.setText(event.getCity().toString());
+        TextTypeCategory.setText(event.getCategory().toString());
+
+        loadSeats();
+    }
+
+    private void loadPrices() {
+
+        textPriceVIP.setText(event.getPrice() + 60000 + "");
+        textPricePreferencial.setText(event.getPrice() + 40000 + "");
+        textPriceGeneral.setText(event.getPrice() + 20000 + "");
+        textPriceEconomy.setText(event.getPrice() + "");
     }
 
     private void loadSeats() {
 
         seatMap.clear();
 
-        if(event.getSeats() == null || event.getSeats().isEmpty()) {
+        if (event.getSeats() == null) {
+            event.setSeats(new ArrayList<>());
+        }
 
-            for(Node node : seatPane.getChildren()) {
+        if (event.getSeats().isEmpty()) {
 
-                if(node instanceof Button button) {
+            for (Node node : seatPane.getChildren()) {
 
-                    String code =
-                            button.getId();
+                if (node instanceof Button button) {
 
-                    Seat seat =
-                            createSeat(code);
-
+                    Seat seat = createSeat(button.getId());
                     event.getSeats().add(seat);
                 }
             }
         }
 
-        for(Node node : seatPane.getChildren()) {
+        for (Node node : seatPane.getChildren()) {
 
-            if(node instanceof Button button) {
+            if (node instanceof Button button) {
 
-                for(Seat seat : event.getSeats()) {
+                for (Seat seat : event.getSeats()) {
 
-                    if(seat.getCode().equals(button.getId())) {
+                    if (seat.getCode().equals(button.getId())) {
 
                         seatMap.put(button, seat);
-
                         updateSeatStyle(button, seat);
-
-                        break;
                     }
                 }
             }
@@ -147,304 +181,108 @@ public class SeeDetailsEventController {
         updateTotal();
     }
 
-    public void setEvent(Event event) {
-
-        this.event = event;
-
-        TextNameEvent.setText(
-                event.getName()
-        );
-
-        TextDescription.setText(
-                event.getDescription()
-        );
-
-        TextVenueAndCity.setText(
-                event.getCity().toString()
-        );
-
-        textDate.setText(
-                event.getDate().toString()
-        );
-
-        textHour.setText(
-                event.getHour()
-        );
-
-        TextTypeCategory.setText(
-                event.getCategory().toString()
-        );
-
-        textPriceVIP.setText(
-                event.getPrice() + 60000 + ""
-        );
-
-        textPricePreferencial.setText(
-                event.getPrice() + 40000 + ""
-        );
-
-        textPriceGeneral.setText(
-                event.getPrice() + 20000 + ""
-        );
-
-        textPriceEconomy.setText(
-                event.getPrice() + ""
-        );
-
-        TextService.setText(
-                "$10000"
-        );
-
-
-
-        if(event.getImagePath() != null &&
-                !event.getImagePath().isEmpty()) {
-
-            File file =
-                    new File(
-                            event.getImagePath()
-                    );
-
-            imgEvent.setImage(
-                    new Image(
-                            file.toURI().toString()
-                    )
-            );
-
-        } else {
-
-            imgEvent.setImage(
-                    new Image(
-                            getClass().getResourceAsStream(
-                                    "/co/edu/uniquindio/poo/evenly/imgs/BannerHero.png"
-                            )
-                    )
-            );
-        }
-
-        loadSeats();
-    }
-
-
     private Seat createSeat(String code) {
 
         SeatZone zone;
-
         double price;
 
-        if(code.startsWith("A")) {
-
+        if (code.startsWith("A")) {
             zone = SeatZone.VIP;
             price = event.getPrice() + 60000;
 
-        } else if(code.startsWith("B")) {
-
+        } else if (code.startsWith("B")) {
             zone = SeatZone.PREFERENCIAL;
             price = event.getPrice() + 40000;
 
-        } else if(code.startsWith("C")) {
-
+        } else if (code.startsWith("C")) {
             zone = SeatZone.GENERAL;
             price = event.getPrice() + 20000;
 
         } else {
-
             zone = SeatZone.ECONOMY;
             price = event.getPrice();
         }
 
-        return new Seat(
-                code,
-                zone,
-                SeatStatus.AVAILABLE,
-                price
-        );
+        return new Seat(code, zone, price, SeatStatus.AVAILABLE);
     }
-
 
     private void handleSeat(Button button) {
 
-        Seat seat =
-                seatMap.get(button);
+        Seat seat = seatMap.get(button);
 
-        if(seat.getStatus() == SeatStatus.OCCUPIED ||
+        if (seat.getStatus() == SeatStatus.OCCUPIED ||
                 seat.getStatus() == SeatStatus.DISABLED) {
-
             return;
         }
 
-        if(seat.getStatus() == SeatStatus.SELECTED) {
+        if (seat.getStatus() == SeatStatus.SELECTED) {
 
-            seat.setStatus(
-                    SeatStatus.AVAILABLE
-            );
-
+            seat.setStatus(SeatStatus.AVAILABLE);
             selectedSeats.remove(seat);
 
         } else {
 
-            seat.setStatus(
-                    SeatStatus.SELECTED
-            );
-
+            seat.setStatus(SeatStatus.SELECTED);
             selectedSeats.add(seat);
         }
 
         updateSeatStyle(button, seat);
-
         updateTotal();
     }
 
-
-    private void updateSeatStyle(Button button,
-                                 Seat seat) {
+    private void updateSeatStyle(Button button, Seat seat) {
 
         button.setDisable(false);
 
-        switch (seat.getStatus()) {
+        SeatStatus status = seat.getStatus();
 
-            case AVAILABLE -> {
+        if (status == null) {
+            seat.setStatus(SeatStatus.AVAILABLE);
+            status = SeatStatus.AVAILABLE;
+        }
 
-                switch (seat.getZone()) {
+        if (status == SeatStatus.OCCUPIED) {
+            button.setStyle("-fx-background-color: #D50000;");
+            button.setDisable(true);
+            return;
+        }
 
-                    case VIP ->
+        if (status == SeatStatus.SELECTED) {
+            button.setStyle("-fx-background-color: #00C853;");
+            return;
+        }
 
-                            button.setStyle(
-                                    "-fx-background-color: #FFD700;" +
-                                            "-fx-text-fill: black;" +
-                                            "-fx-background-radius: 10;"
-                            );
+        switch (seat.getZone()) {
 
-                    case PREFERENCIAL ->
-
-                            button.setStyle(
-                                    "-fx-background-color: #8000FF;" +
-                                            "-fx-text-fill: white;" +
-                                            "-fx-background-radius: 10;"
-                            );
-
-                    case GENERAL ->
-
-                            button.setStyle(
-                                    "-fx-background-color: #2196F3;" +
-                                            "-fx-text-fill: white;" +
-                                            "-fx-background-radius: 10;"
-                            );
-
-                    case ECONOMY ->
-
-                            button.setStyle(
-                                    "-fx-background-color: #4CAF50;" +
-                                            "-fx-text-fill: white;" +
-                                            "-fx-background-radius: 10;"
-                            );
-                }
-            }
-
-            case SELECTED ->
-
-                    button.setStyle(
-                            "-fx-background-color: #00C853;" +
-                                    "-fx-text-fill: white;" +
-                                    "-fx-background-radius: 10;"
-                    );
-
-            case OCCUPIED -> {
-
-                button.setStyle(
-                        "-fx-background-color: #D50000;" +
-                                "-fx-text-fill: white;" +
-                                "-fx-background-radius: 10;"
-                );
-
-                button.setDisable(true);
-            }
-
-            case DISABLED -> {
-
-                button.setStyle(
-                        "-fx-background-color: #757575;" +
-                                "-fx-text-fill: white;" +
-                                "-fx-background-radius: 10;"
-                );
-
-                button.setDisable(true);
-            }
+            case VIP -> button.setStyle("-fx-background-color: #FFD700;");
+            case PREFERENCIAL -> button.setStyle("-fx-background-color: #8000FF;");
+            case GENERAL -> button.setStyle("-fx-background-color: #2196F3;");
+            case ECONOMY -> button.setStyle("-fx-background-color: #4CAF50;");
         }
     }
-
 
     private void updateTotal() {
 
         double total = 0;
-
-        StringBuilder seatValues =
-                new StringBuilder();
-
-        Map<SeatZone, Double> zonePrices =
-                new HashMap<>();
+        StringBuilder seatsText = new StringBuilder();
 
         int count = 0;
 
-        for(Seat seat : selectedSeats) {
+        for (Seat seat : selectedSeats) {
 
             total += seat.getPrice();
 
-            seatValues
-                    .append(seat.getCode())
-                    .append("   ");
-
+            seatsText.append(seat.getCode()).append(" ");
             count++;
 
-            if(count % 7 == 0) {
-
-                seatValues.append("\n");
+            if (count % 7 == 0) {
+                seatsText.append("\n");
             }
-
-            zonePrices.putIfAbsent(
-                    seat.getZone(),
-                    seat.getPrice()
-            );
         }
 
-        StringBuilder seatPrices =
-                new StringBuilder();
-
-        for(Map.Entry<SeatZone, Double> entry
-                : zonePrices.entrySet()) {
-
-            seatPrices
-                    .append(entry.getKey())
-                    .append(" - $")
-                    .append(entry.getValue())
-                    .append("\n");
-        }
-
-        TextSeatValues.setText(
-                seatValues.toString()
-        );
-
-        TextListPricesSeats.setText(
-                seatPrices.toString()
-        );
-
-        TextSubTotal.setText(
-                "$" + total
-        );
-
-        TextTotal.setText(
-                "$" + (total + 10000)
-        );
-    }
-
-    public List<Seat> getSelectedSeats() {
-
-        return selectedSeats;
-    }
-
-    @FXML
-    void onChangeEvents(MouseEvent event) {
-        EvenlyApplication.changeScene("Events.fxml");
+        TextSeatValues.setText(seatsText.toString().trim());
+        TextSubTotal.setText("$" + total);
+        TextTotal.setText("$" + (total + 10000));
     }
 
     @FXML
@@ -453,63 +291,43 @@ public class SeeDetailsEventController {
     }
 
     @FXML
-    void onChangeMerchandising(MouseEvent event) {
-
+    void onChangeEvents(MouseEvent event) {
+        EvenlyApplication.changeScene("Events.fxml");
     }
 
     @FXML
-    void onChangeProfile(MouseEvent event) {
-        if(UserSession.getCurrentUser() == null) {
+    void onChangeProfile(MouseEvent event){
+//        EvenlyApplication.changeScene()
+    }
 
-            EvenlyApplication.changeScene(
-                    "Register.fxml"
-            );
+    @FXML
+    void onChangeMerchandising(MouseEvent event){
 
-        } else {
-
-            EvenlyApplication.changeScene(
-                    "Profile.fxml"
-            );
-        }
     }
 
     @FXML
     void onContinueShopping(ActionEvent e) {
+
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/co/edu/uniquindio/poo/evenly/Payment.fxml"
-                            )
-                    );
-
-            Parent root =
-                    loader.load();
-
-            PaymentController controller =
-                    loader.getController();
-
-            controller.setData(
-                    this.event,
-                    selectedSeats,
-                    Double.parseDouble(
-                            TextTotal.getText()
-                                    .replace("$", "")
-                    )
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/co/edu/uniquindio/poo/evenly/Payment.fxml")
             );
 
-            Scene scene =
-                    new Scene(root);
+            Parent root = loader.load();
 
-            EvenlyApplication.getStage()
-                    .setScene(scene);
+            PaymentController controller = loader.getController();
+
+            controller.setData(
+                    event,
+                    selectedSeats,
+                    Double.parseDouble(TextTotal.getText().replace("$", ""))
+            );
+
+            EvenlyApplication.getStage().setScene(new Scene(root));
 
         } catch (Exception ex) {
-
             ex.printStackTrace();
         }
     }
-
 }
-

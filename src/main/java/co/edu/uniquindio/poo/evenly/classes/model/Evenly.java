@@ -1,16 +1,53 @@
 package co.edu.uniquindio.poo.evenly.classes.model;
 
+import co.edu.uniquindio.poo.evenly.classes.service.EventService;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
+import co.edu.uniquindio.poo.evenly.classes.service.ImageService;
+
 public class Evenly {
+
     private static Evenly instance;
-//    private static User CurrentUser;
 
-    private Evenly(){};
+    private final EventService eventService;
 
-    public static Evenly getInstance() {
+    private final SceneManager sceneManager;
+
+    private final ImageService imageService;
+
+    private Evenly() {
+
+        this.eventService =
+                new EventService();
+
+        this.sceneManager =
+                new SceneManager();
+
+        this.imageService =
+                new ImageService();
+    }
+
+    public static Evenly getInstance(){
+
+        if(instance == null){
+
+            instance = new Evenly();
+        }
+
         return instance;
     }
 
-    public static void setInstance(Evenly instance) {
-        Evenly.instance = instance;
+    public EventService getEventService() {
+
+        return eventService;
+    }
+
+    public SceneManager getSceneManager() {
+
+        return sceneManager;
+    }
+
+    public ImageService getImageService() {
+
+        return imageService;
     }
 }

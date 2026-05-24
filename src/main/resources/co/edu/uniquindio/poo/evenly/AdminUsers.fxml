@@ -316,52 +316,13 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Label>
-                        <ScrollPane hbarPolicy="NEVER" layoutX="132.0" layoutY="116.0" prefHeight="482.0" prefWidth="531.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
+                        <ScrollPane hbarPolicy="NEVER" layoutX="76.0" layoutY="116.0" prefHeight="482.0" prefWidth="587.0" style="-fx-background-color: transparent;" vbarPolicy="ALWAYS">
                            <content>
-                              <VBox fx:id="vboxContainer" prefHeight="480.0" prefWidth="598.0" spacing="15" style="-fx-background-color: transparent;" />
+                              <VBox fx:id="vboxContainer" prefHeight="480.0" prefWidth="539.0" spacing="15" style="-fx-background-color: transparent;" />
                            </content>
                         </ScrollPane>
                         <Line endX="389.0" layoutX="273.0" layoutY="84.0" startX="-123.0" stroke="#8984bf" />
-                        <AnchorPane layoutX="696.0" layoutY="82.0" prefHeight="149.0" prefWidth="422.0" style="-fx-border-color: #8984bf; -fx-border-radius: 20px;">
-                           <children>
-                              <Label layoutX="25.0" layoutY="22.0" style="-fx-text-fill: #f2e4e4;" text="Fast Filter" textFill="#e1dadacf">
-                                 <font>
-                                    <Font name="Poppins SemiBold" size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                              <Circle fill="TRANSPARENT" layoutX="74.0" layoutY="94.0" radius="44.0" stroke="#28ae43" strokeType="INSIDE" strokeWidth="7.0" />
-                              <Circle fill="TRANSPARENT" layoutX="211.0" layoutY="94.0" radius="44.0" stroke="#c34e4e" strokeType="INSIDE" strokeWidth="7.0" />
-                              <Circle fill="TRANSPARENT" layoutX="347.0" layoutY="94.0" radius="44.0" stroke="#ae3fa9" strokeType="INSIDE" strokeWidth="7.0" />
-                              <Label fx:id="textValue1" layoutX="58.0" layoutY="80.0" style="-fx-text-fill: #f2e4e4;" text="120" textFill="#e1dadacf">
-                                 <font>
-                                    <Font name="Poppins SemiBold" size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                              <Label fx:id="textValue2" layoutX="195.0" layoutY="80.0" style="-fx-text-fill: #f2e4e4;" text="120" textFill="#e1dadacf">
-                                 <font>
-                                    <Font name="Poppins SemiBold" size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                              <Label fx:id="textValue3" layoutX="331.0" layoutY="80.0" style="-fx-text-fill: #f2e4e4;" text="120" textFill="#e1dadacf">
-                                 <font>
-                                    <Font name="Poppins SemiBold" size="20.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </Label>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="696.0" layoutY="252.0" prefHeight="356.0" prefWidth="422.0" style="-fx-border-color: #8984bf; -fx-border-radius: 20px;">
+                        <AnchorPane layoutX="696.0" layoutY="78.0" prefHeight="530.0" prefWidth="422.0" style="-fx-border-color: #8984bf; -fx-border-radius: 20px;">
                            <children>
                               <Label layoutX="25.0" layoutY="22.0" style="-fx-text-fill: #f2e4e4;" text="Recent Users" textFill="#e1dadacf">
                                  <font>
@@ -371,7 +332,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <VBox fx:id="vBoxContainerRecent" layoutX="25.0" layoutY="59.0" prefHeight="278.0" prefWidth="371.0" />
+                              <VBox fx:id="vBoxContainerRecent" layoutX="25.0" layoutY="59.0" prefHeight="450.0" prefWidth="371.0" />
                            </children>
                         </AnchorPane>
                      </children>

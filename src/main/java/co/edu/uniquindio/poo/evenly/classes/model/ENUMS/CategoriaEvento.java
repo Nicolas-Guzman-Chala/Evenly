@@ -1,10 +1,8 @@
-package co.edu.uniquindio.poo.evenly.classes.model;
+package co.edu.uniquindio.poo.evenly.classes.model.ENUMS;
 
 public enum CategoriaEvento {
     TODOS,
     CONCIERTO,
     TEATRO,
     CONFERENCIA,
-    FESTIVAL,
-    DEPORTIVO
 }

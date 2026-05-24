@@ -1,8 +1,15 @@
 package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.*;
+import co.edu.uniquindio.poo.evenly.classes.model.AsientoState.VendidoState;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStatePackage.PagadoState;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoMasterCard;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoPSE;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoPaypal;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoStrategy;
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.*;
+import co.edu.uniquindio.poo.evenly.classes.model.Proxy.*;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
-import co.edu.uniquindio.poo.evenly.classes.service.PurchaseService;
 import co.edu.uniquindio.poo.evenly.classes.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,133 +26,69 @@ import java.util.List;
 
 public class PaymentController {
 
-    @FXML
-    private Label AmountTotal;
+    @FXML private Label AmountTotal;
+    @FXML private Label DateAndHourEvent;
+    @FXML private Label SeatsValues;
+    @FXML private Label TextNameEvent;
+    @FXML private Label TotalAmount;
 
-    @FXML
-    private AnchorPane CardPayment2;
+    @FXML private AnchorPane cardPayment;
+    @FXML private AnchorPane CardPayment2;
+    @FXML private AnchorPane CardPayment3;
 
-    @FXML
-    private AnchorPane CardPayment3;
+    @FXML private DatePicker datePicker;
 
-    @FXML
-    private Label DateAndHourEvent;
+    @FXML private TextField inputCountry;
+    @FXML private TextField inputNameCard;
+    @FXML private TextField inputNumberCard;
+    @FXML private TextField inputPostcode;
 
-    @FXML
-    private Label SeatsValues;
-
-    @FXML
-    private Label TextNameEvent;
-
-    @FXML
-    private Label TotalAmount;
-
-    @FXML
-    private AnchorPane cardPayment;
-
-    @FXML
-    private DatePicker datePicker;
-
-    @FXML
-    private Label events;
-
-    @FXML
-    private Label home;
-
-    @FXML
-    private ImageView imgUser;
-
-    @FXML
-    private TextField inputCountry;
-
-    @FXML
-    private TextField inputNameCard;
-
-    @FXML
-    private TextField inputNumberCard;
-
-    @FXML
-    private TextField inputPostcode;
-
-    @FXML
-    private Label merchandising;
-
-    private AnchorPane selectedPayment;
+    @FXML private ImageView imgUser;
 
     private Event event;
-
     private List<Seat> seats;
-
     private PaymentMethod selectedPaymentMethod;
+    private AnchorPane selectedPayment;
 
-    private EventService eventService =
-            new EventService();
+    private final EventService eventService = new EventService();
+    private final UserService userService = new UserService();
 
-    private UserService userService = new UserService();
-
-    private PurchaseService purchaseService =
-            new PurchaseService();
+    private final CompraService compraService =
+            new CompraProxy(new CompraServiceReal());
 
     @FXML
     public void initialize() {
-
         resetStyles();
-
         selectPayment(cardPayment);
-
-        selectedPaymentMethod =
-                PaymentMethod.MASTERCARD;
+        selectedPaymentMethod = PaymentMethod.MASTERCARD;
     }
 
-    public void setData(Event event,
-                        List<Seat> seats,
-                        double total) {
+    public void setData(Event event, List<Seat> seats, double total) {
 
         this.event = event;
         this.seats = seats;
 
-        TextNameEvent.setText(
-                event.getName()
-        );
+        TextNameEvent.setText(event.getName());
+        DateAndHourEvent.setText(event.getDate() + " - " + event.getHour());
 
-        DateAndHourEvent.setText(
-                event.getDate() +
-                        " - " +
-                        event.getHour()
-        );
+        TotalAmount.setText("$" + total);
+        AmountTotal.setText("$" + total);
 
-        TotalAmount.setText(
-                "$" + total
-        );
-
-        AmountTotal.setText(
-                "$" + total
-        );
-
-        StringBuilder seatText =
-                new StringBuilder();
-
-        for(Seat seat : seats) {
-
-            seatText
-                    .append(seat.getCode())
-                    .append(" ");
+        StringBuilder seatText = new StringBuilder();
+        for (Seat seat : seats) {
+            seatText.append(seat.getCode()).append(" ");
         }
 
-        SeatsValues.setText(
-                seatText.toString()
-        );
+        SeatsValues.setText(seatText.toString());
     }
 
     @FXML
     void onChangeEvents(MouseEvent event) {
-
         EvenlyApplication.changeScene("Events.fxml");
     }
 
     @FXML
     void onChangeHome(MouseEvent event) {
-
         EvenlyApplication.changeScene("Home.fxml");
     }
 
@@ -157,42 +100,25 @@ public class PaymentController {
     @FXML
     void onChangeProfile(MouseEvent event) {
 
-        if(UserSession.getCurrentUser() == null) {
-
-            EvenlyApplication.changeScene(
-                    "Register.fxml"
-            );
-
+        if (UserSession.getCurrentUser() == null) {
+            EvenlyApplication.changeScene("Register.fxml");
         } else {
-
-            EvenlyApplication.changeScene(
-                    "Profile.fxml"
-            );
+            EvenlyApplication.changeScene("Profile.fxml");
         }
     }
 
     @FXML
     void onClickPayment(MouseEvent event) {
 
-        AnchorPane selected =
-                (AnchorPane) event.getSource();
-
+        AnchorPane selected = (AnchorPane) event.getSource();
         selectPayment(selected);
 
-        if(selected == cardPayment) {
-
-            selectedPaymentMethod =
-                    PaymentMethod.MASTERCARD;
-
-        } else if(selected == CardPayment2) {
-
-            selectedPaymentMethod =
-                    PaymentMethod.PAYPAL;
-
+        if (selected == cardPayment) {
+            selectedPaymentMethod = PaymentMethod.MASTERCARD;
+        } else if (selected == CardPayment2) {
+            selectedPaymentMethod = PaymentMethod.PAYPAL;
         } else {
-
-            selectedPaymentMethod =
-                    PaymentMethod.PSE;
+            selectedPaymentMethod = PaymentMethod.PSE;
         }
     }
 
@@ -221,124 +147,143 @@ public class PaymentController {
                         "-fx-border-radius: 15;";
 
         cardPayment.setStyle(normalStyle);
-
         CardPayment2.setStyle(normalStyle);
-
         CardPayment3.setStyle(normalStyle);
     }
 
     @FXML
     void onPayNow(ActionEvent e) {
 
-        if(UserSession.getCurrentUser() == null) {
+        if (!validarFormulario()) return;
 
-            EvenlyApplication.changeScene(
-                    "Register.fxml"
-            );
+        User user = UserSession.getCurrentUser();
 
-            return;
+        Compra compra = crearCompraDominio(user);
+
+        compraService.realizarCompra(compra);
+        compraService.pagarCompra(compra);
+
+        actualizarAsientos();
+
+        if(user.getPurchaseHistory() == null){
+            user.setPurchaseHistory(new ArrayList<>());
         }
 
-        if(seats == null || seats.isEmpty()) {
+        user.getPurchaseHistory().add(compra);
 
-            System.out.println(
-                    "Select at least one seat"
-            );
+        actualizarUsuario(user);
 
-            return;
+        eventService.updateEvent(event.getId(), event);
+
+        EvenlyApplication.changeScene("Home.fxml");
+    }
+
+    private boolean validarFormulario() {
+
+        if (UserSession.getCurrentUser() == null) {
+            EvenlyApplication.changeScene("Register.fxml");
+            return false;
         }
 
-        if(inputNameCard.getText().isEmpty() ||
+        if (seats == null || seats.isEmpty()) {
+            System.out.println("Select at least one seat");
+            return false;
+        }
+
+        if (inputNameCard.getText().isEmpty() ||
                 inputNumberCard.getText().isEmpty() ||
                 inputCountry.getText().isEmpty() ||
                 inputPostcode.getText().isEmpty() ||
                 datePicker.getValue() == null) {
 
-            System.out.println(
-                    "Complete all fields"
-            );
-
-            return;}
-
-        double total = 0;
-
-        for(Seat seat : seats) {
-
-            total += seat.getPrice();
+            System.out.println("Complete all fields");
+            return false;
         }
 
-        total += 10000;
+        return true;
+    }
 
-        List<String> seatCodes =
-                new ArrayList<>();
+    private SeatZone map(SeatZone zone) {
 
-        for(Seat seat : seats) {
+        switch(zone) {
+            case VIP: return SeatZone.VIP;
+            case GENERAL: return SeatZone.GENERAL;
+            case PREFERENCIAL: return SeatZone.PREFERENCIAL;
+            default: return SeatZone.ECONOMY;
+        }
+    }
 
-            seatCodes.add(
-                    seat.getCode()
+
+    private Compra crearCompraDominio(User user) {
+
+        List<Entrada> entradas = new ArrayList<>();
+
+        for (Seat seat : seats) {
+
+            Entrada entrada = new Entrada(
+                    "E-" + System.nanoTime(),
+                    event,
+                    null,
+                    seat,
+                    map(seat.getZone()),
+                    EstadoEntrada.ACTIVA
             );
+
+            entradas.add(entrada);
         }
 
-        Purchase purchase =
-                new Purchase(
-                        UserSession
-                                .getCurrentUser()
-                                .getEmail(),
+        PagoStrategy pagoStrategy = crearEstrategia(selectedPaymentMethod);
 
-                        event.getId(),
-
-                        event.getName(),
-
-                        seatCodes,
-
-                        selectedPaymentMethod,
-
-                        total,
-
-                        LocalDateTime.now()
-                );
-
-        purchaseService.savePurchase(
-                purchase
-        );
-
-        User user =
-                UserSession.getCurrentUser();
-
-        if(user.getPurchaseHistory() == null) {
-
-            user.setPurchaseHistory(
-                    new ArrayList<>()
-            );
-        }
-
-        user.getPurchaseHistory().add(
-                purchase
-        );
-
-        userService.updateUser(
+        return new Compra(
+                "C-" + System.currentTimeMillis(),
+                LocalDateTime.now().toLocalDate(),
+                new PagadoState(),
                 user.getIdUser(),
-                user
+                event,
+                selectedPaymentMethod,
+                new Tarifa(0,10000,0),
+                entradas
         );
+    }
 
-        System.out.println(
-                "Successful payment"
-        );
+    private PagoStrategy crearEstrategia(PaymentMethod method) {
 
-        for(Seat seat : seats) {
+        switch (method) {
 
-            seat.setStatus(
-                    SeatStatus.OCCUPIED
-            );
+            case MASTERCARD:
+                return new PagoMasterCard();
+
+            case PAYPAL:
+                return new PagoPaypal();
+
+            case PSE:
+                return new PagoPSE();
+
+            default:
+                throw new IllegalArgumentException("Método no soportado");
+        }
+    }
+
+    private void actualizarUsuario(User user) {
+
+        if (user.getPurchaseHistory() == null) {
+            user.setPurchaseHistory(new ArrayList<>());
         }
 
-        eventService.updateEvent(
-                event.getId(),
-                event
-        );
+        userService.updateUser(user.getIdUser(), user);
+    }
 
-        EvenlyApplication.changeScene(
-                "Home.fxml"
-        );
+    private void actualizarAsientos() {
+
+        for (Seat seatComprado : seats) {
+
+            for (Seat seatEvento : event.getSeats()) {
+
+                if(seatEvento.getCode().equals(seatComprado.getCode())) {
+
+                    seatEvento.marcarComoOcupado();
+                }
+            }
+        }
     }
 }

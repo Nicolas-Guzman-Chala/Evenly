@@ -92,12 +92,6 @@ public class EventCardController {
                         "    -fx-padding: 5; -fx-background-radius: 5px");
             }
 
-            case FESTIVAL -> {
-                textTypeEvent.setText("FESTIVAL");
-                textTypeEvent.setStyle("-fx-background-color: #F59E0B; -fx-text-fill: white;     -fx-font-family: \"Poppins\";\n" +
-                        "    -fx-padding: 5; -fx-background-radius: 5px");
-            }
-
             case CONFERENCIA -> {
                 textTypeEvent.setText("CONFERENCIA");
                 textTypeEvent.setStyle("-fx-background-color: #3B82F6; -fx-text-fill: white;     -fx-font-family: \"Poppins\";\n" +
@@ -108,25 +102,25 @@ public class EventCardController {
 
     @FXML
     void onChangeSeeDetails(ActionEvent e) {
+
         try {
 
-            FXMLLoader loader =
-                    new FXMLLoader(
-                            getClass().getResource(
-                                    "/co/edu/uniquindio/poo/evenly/SeeDetailsEvent.fxml"
-                            )
-                    );
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource(
+                            "/co/edu/uniquindio/poo/evenly/SeeDetailsEvent.fxml"
+                    )
+            );
 
-            Parent root =
-                    loader.load();
+            Parent root = loader.load();
 
             SeeDetailsEventController controller =
                     loader.getController();
 
             controller.setEvent(event);
 
-            Stage stage =
-                    new Stage();
+            Stage stage = (Stage) textNameEvent
+                    .getScene()
+                    .getWindow();
 
             stage.setScene(
                     new Scene(root)

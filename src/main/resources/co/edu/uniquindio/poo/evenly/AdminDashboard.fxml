@@ -319,10 +319,19 @@
                         <AnchorPane layoutX="-2.0" layoutY="52.0" prefHeight="220.0" prefWidth="567.0">
                            <children>
                               <TableView fx:id="EventManagementTable" layoutX="49.0" layoutY="42.0" prefHeight="236.0" prefWidth="692.0">
-                                <columns>
-                                  <TableColumn prefWidth="75.0" text="C1" />
-                                  <TableColumn prefWidth="75.0" text="C2" />
-                                </columns>
+                                  <columns>
+
+                                      <TableColumn fx:id="colEvent" prefWidth="160.0" text="Event" />
+
+                                      <TableColumn fx:id="colCity" prefWidth="146.0" text="City" />
+
+                                      <TableColumn fx:id="colDate" prefWidth="133.0" text="Date" />
+
+                                      <TableColumn fx:id="colTickets" prefWidth="58.0" text="Tickets" />
+
+                                      <TableColumn fx:id="colRevenue" prefWidth="172.0" text="Revenue" />
+
+                                  </columns>
                               </TableView>
                               <Label layoutX="61.0" layoutY="7.0" text="Event management" textFill="WHITE">
                                  <font>
@@ -342,22 +351,27 @@
                               <Line endX="215.0" layoutX="105.0" layoutY="52.0" startX="-100.0" stroke="#8b8bb9" />
                               <Line endX="215.0" layoutX="105.0" layoutY="99.0" startX="-100.0" stroke="#8b8bb9" />
                               <Line endX="215.0" layoutX="105.0" layoutY="156.0" startX="-100.0" stroke="#8b8bb9" />
-                              <Label fx:id="TextSalesAmount" layoutX="25.0" layoutY="63.0" text="Sales Amount" textFill="#f2e4e4">
+                              <Label fx:id="TextSalesAmount" layoutX="174.0" layoutY="64.0" text="Sales Amount" textFill="#f2e4e4">
                                  <font>
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="TextSalesValue" layoutX="38.0" layoutY="116.0" text="Sales" textFill="#f2e4e4">
-                                 <font>
-                                    <Font name="Poppins Regular" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="25.0" layoutY="116.0" text="\$" textFill="#f2e4e4">
+                              <Label fx:id="TextSalesValue" layoutX="89.0" layoutY="116.0" text="Sales" textFill="#f2e4e4">
                                  <font>
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>
                               </Label>
                               <Label fx:id="textProcentajeSales" layoutX="25.0" layoutY="174.0" text="Porcentaje %" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="23.0" layoutY="64.0" text="Sales Amount:" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="23.0" layoutY="116.0" text="Sales:" textFill="#f2e4e4">
                                  <font>
                                     <Font name="Poppins Regular" size="20.0" />
                                  </font>

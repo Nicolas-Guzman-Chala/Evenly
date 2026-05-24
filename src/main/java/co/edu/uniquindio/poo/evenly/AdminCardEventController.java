@@ -1,5 +1,6 @@
 package co.edu.uniquindio.poo.evenly;
 
+import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import javafx.event.ActionEvent;
@@ -12,16 +13,20 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
 
 public class AdminCardEventController {
 
+    private final EventService eventService =
+            new EventService();
+
     private Event event;
 
     @FXML
-    private ChoiceBox<?> choiceBoxEvent;
+    private ChoiceBox<EstadoEvento> choiceBoxEvent;
 
     @FXML
     private Button editButton;
@@ -51,80 +56,173 @@ public class AdminCardEventController {
 
         this.event = event;
 
-        textNameEvent.setText(event.getName());
+        choiceBoxEvent.getItems().addAll(
+                EstadoEvento.values()
+        );
+
+        choiceBoxEvent.setValue(
+                event.getState()
+        );
+
+        loadEventInfo();
+    }
+
+    @FXML
+    void onChangeState(MouseEvent actionEvent){
+
+        try {
+
+            EstadoEvento nuevoEstado =
+                    choiceBoxEvent.getValue();
+
+            event.setState(
+                    nuevoEstado
+            );
+
+            eventService.updateEvent(
+                    event.getId(),
+                    event
+            );
+
+        } catch (Exception e){
+
+            e.printStackTrace();
+        }
+    }
+
+    private void loadEventInfo(){
+
+        if(event == null){
+
+            return;
+        }
+
+        textNameEvent.setText(
+                event.getName()
+        );
+
+        textIncome.setText(
+                event.getCity().toString()
+        );
 
         if(event.getDate() != null){
-            textDate.setText(event.getDate().toString());
+
+            textDate.setText(
+                    event.getDate().toString()
+            );
+        }
+
+        if(event.getHour() != null){
+
+            textHour.setText(
+                    event.getHour().toString()
+            );
+        }
+
+        if(event.hasAvailableSeats()){
+
+            textTicket.setText(
+                    "Disponible"
+            );
+
+        } else {
+
+            textTicket.setText(
+                    "Agotado"
+            );
+        }
+
+        loadEventImage();
+    }
+
+    private void loadEventImage(){
+
+        if(event.getImagePath() == null ||
+                event.getImagePath().isBlank()){
+
+            return;
+        }
+
+        File file = new File(
+                event.getImagePath()
+        );
+
+        if(!file.exists()){
+
+            return;
         }
 
         imgEvent.setImage(
                 new Image(
-                        new File(event.getImagePath())
-                                .toURI()
-                                .toString()
+                        file.toURI().toString()
                 )
         );
-
-        textIncome.setText(String.valueOf(event.getCity()));
-
-        textTicket.setText(String.valueOf(event.getHour()));
-
     }
 
     @FXML
-    void onEdit(ActionEvent event) {
+    void onEdit(ActionEvent actionEvent) {
+
+        openEditWindow();
+    }
+
+    private void openEditWindow(){
+
         try {
 
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource(
-                            "/co/edu/uniquindio/poo/evenly/EditCardEvent.fxml"
-                    )
-            );
+            FXMLLoader loader =
+                    new FXMLLoader(
+                            getClass().getResource(
+                                    "/co/edu/uniquindio/poo/evenly/EditCardEvent.fxml"
+                            )
+                    );
 
             Parent root = loader.load();
 
             EditEventController controller =
                     loader.getController();
 
-            controller.setEvent(this.event);
+            controller.setEvent(event);
 
             Stage stage = new Stage();
 
-            Scene scene = new Scene(root);
-
-            stage.setScene(scene);
+            stage.setScene(
+                    new Scene(root)
+            );
 
             stage.showAndWait();
 
-        } catch (Exception ex) {
+        } catch (Exception exception){
 
-            ex.printStackTrace();
+            exception.printStackTrace();
         }
     }
 
     @FXML
-    void onRemove(ActionEvent hola) {
+    void onRemove(ActionEvent actionEvent) {
+
+        deleteEvent();
+    }
+
+    private void deleteEvent(){
+
+        if(event == null){
+
+            return;
+        }
 
         try {
-
-            EventService eventService =
-                    new EventService();
 
             eventService.deleteEvent(
                     event.getId()
             );
 
-            EvenlyApplication.changeScene("AdminEvents.fxml");
-
-            System.out.println(
-                    "Evento eliminado"
+            EvenlyApplication.changeScene(
+                    "AdminEvents.fxml"
             );
 
-        } catch (Exception ex){
+        } catch (Exception exception){
 
-            ex.printStackTrace();
+            exception.printStackTrace();
         }
     }
-
 }
-
