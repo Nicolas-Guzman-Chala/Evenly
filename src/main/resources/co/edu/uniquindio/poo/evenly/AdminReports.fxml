@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.poo.evenly.AdminReportsController">
+   <children>
+      <AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(135deg,   #0F172A 0%,#1E1B4B 50%,#312E81 100%);;" stylesheets="@css/style.css">
+         <children>
+            <ImageView fitHeight="700.0" fitWidth="1364.0" pickOnBounds="true">
+               <image>
+                  <Image url="@imgs/background-dashboard.png" />
+               </image>
+            </ImageView>
+            <BorderPane prefHeight="600.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <left>
+                  <AnchorPane prefHeight="632.0" prefWidth="213.0" style="-fx-background-color: transparent;" styleClass="pane-border-right" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+                     <children>
+                        <AnchorPane layoutX="26.0" layoutY="14.0" prefHeight="35.0" prefWidth="174.0">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" onMouseClicked="#onChangeDashboard" text="Dashboard" textFill="WHITE">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/dashboard-icon.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="61.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" onMouseClicked="#onChangeEventsAdmin" style="-fx-text-fill: #f2e4e4;" text="Events" textFill="#e1dadacf">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/calendar-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="106.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" onMouseClicked="#onChangeSalesAdmin" text="Sales" textFill="#f2e4e4cf">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/sales-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="151.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" onMouseClicked="#onChangeUsersAdmin" text="Users" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/users-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="201.0" prefHeight="35.0" prefWidth="172.0" styleClass="panel-selected">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" onMouseClicked="#onChangeReportsAdmin" text="Reports" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/stats-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="26.0" layoutY="566.0" onMouseClicked="#onChangeLogout" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                           <children>
+                              <Label layoutX="54.0" layoutY="4.0" text="Logout" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="18.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Label>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/logout-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </children></AnchorPane>
+               </left>
+               <top>
+                  <AnchorPane prefHeight="68.0" prefWidth="1408.0" style="-fx-background-color: transparent;" stylesheets="@css/style.css" BorderPane.alignment="CENTER">
+                     <styleClass>
+                        <String fx:value="blur-background" />
+                        <String fx:value="glass-panel" />
+                     </styleClass>
+                     <children>
+                        <Pane layoutX="29.0" layoutY="10.0" prefHeight="49.0" prefWidth="395.0">
+                           <children>
+                              <Circle fill="DODGERBLUE" layoutX="38.0" layoutY="25.0" radius="24.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fx:id="imgAdmin" fitHeight="48.0" fitWidth="49.0" layoutX="14.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" styleClass="img-rounded">
+                                 <image>
+                                    <Image url="@imgs/user-icon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="80.0" layoutY="6.0" prefHeight="18.0" prefWidth="236.0" text="Dashboard" textFill="WHITE">
+                                 <font>
+                                    <Font name="Poppins SemiBold" size="27.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="1085.0" layoutY="15.0" prefHeight="36.0" prefWidth="232.0" styleClass="pane-blue" stylesheets="@css/style.css">
+                           <children>
+                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="26.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/email-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="102.0" layoutY="3.0" onMouseClicked="#onChangeNotificationAdmin" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/bell-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="177.0" layoutY="3.0" onMouseClicked="#onChangeLogout" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/logout-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <Line endX="12.0" endY="16.0" layoutX="137.0" layoutY="14.0" startX="12.0" startY="-10.0" stroke="#b4b4c9" strokeWidth="0.5" />
+                              <Line endX="12.0" endY="16.0" layoutX="69.0" layoutY="14.0" startX="12.0" startY="-10.0" stroke="#8b8bb9" />
+                           </children>
+                        </Pane>
+                     </children></AnchorPane>
+               </top>
+               <center>
+                  <AnchorPane prefHeight="636.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Pane prefHeight="48.0" prefWidth="1151.0" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane layoutX="41.0" layoutY="7.0" prefHeight="31.0" prefWidth="164.0">
+                                 <children>
+                                    <Label layoutX="47.0" layoutY="6.0" onMouseClicked="#onChangeDashboard" text="Dashboard" textFill="WHITE">
+                                       <font>
+                                          <Font name="Poppins Regular" size="16.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/dashboard-icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="216.0" layoutY="7.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                                 <children>
+                                    <Label layoutX="47.0" layoutY="6.0" onMouseClicked="#onChangeEventsAdmin" style="-fx-text-fill: #f2e4e4;" text="Events" textFill="#e1dadacf">
+                                       <font>
+                                          <Font name="Poppins Regular" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/calendar-icon.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="356.0" layoutY="7.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                                 <children>
+                                    <Label layoutX="49.0" layoutY="7.0" onMouseClicked="#onChangeSalesAdmin" text="Sales" textFill="#f2e4e4cf">
+                                       <font>
+                                          <Font name="Poppins Regular" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="14.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/sales-icon.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="484.0" layoutY="7.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
+                                 <children>
+                                    <Label layoutX="48.0" layoutY="6.0" onMouseClicked="#onChangeUsersAdmin" text="Users" textFill="#f2e4e4">
+                                       <font>
+                                          <Font name="Poppins Regular" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/users-icon.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane layoutX="627.0" layoutY="7.0" prefHeight="32.0" prefWidth="184.0" styleClass="panel-selected">
+                                 <children>
+                                    <Label layoutX="52.0" layoutY="6.0" onMouseClicked="#onChangeReportsAdmin" text="Reports" textFill="#f2e4e4">
+                                       <font>
+                                          <Font name="Poppins Regular" size="16.0" />
+                                       </font>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Label>
+                                    <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@imgs/stats-icon.png" />
+                                       </image>
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </children>
+                              </AnchorPane>
+                              <Label layoutX="929.0" layoutY="13.0" text="Welcome, " textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="textName" layoutX="1020.0" layoutY="13.0" text="name" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <styleClass>
+                              <String fx:value="pane-blue-nav" />
+                              <String fx:value="pane-blue" />
+                           </styleClass></Pane>
+                        <AnchorPane layoutX="-2.0" layoutY="52.0" prefHeight="220.0" prefWidth="567.0">
+                           <children>
+                              <TableView fx:id="EventManagementTable" layoutX="49.0" layoutY="54.0" prefHeight="236.0" prefWidth="692.0">
+                                  <columns>
+
+                                      <TableColumn fx:id="colEvent" prefWidth="160.0" text="Event" />
+
+                                      <TableColumn fx:id="colCity" prefWidth="146.0" text="City" />
+
+                                      <TableColumn fx:id="colDate" prefWidth="133.0" text="Date" />
+
+                                      <TableColumn fx:id="colTickets" prefWidth="58.0" text="Tickets" />
+
+                                      <TableColumn fx:id="colRevenue" prefWidth="172.0" text="Revenue" />
+
+                                  </columns>
+                              </TableView>
+                              <Label layoutX="122.0" layoutY="14.0" text="AdminReports" textFill="WHITE">
+                                 <font>
+                                    <Font name="Poppins Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="41.0" fitWidth="75.0" layoutX="68.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/stats-icon.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="47.0" layoutY="317.0" prefHeight="293.0" prefWidth="500.0">
+                           <children>
+                              <BarChart fx:id="TableSalesSummary" layoutX="-40.0" layoutY="41.0" prefHeight="269.0" prefWidth="727.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="769.0" layoutY="71.0" prefHeight="121.0" prefWidth="354.0" styleClass="panel-gray">
+                           <children>
+                              <Circle fill="#edf1f500" layoutX="56.0" layoutY="61.0" radius="34.0" stroke="#942f75" strokeType="INSIDE" strokeWidth="5.0" />
+                              <Label layoutX="106.0" layoutY="27.0" text="Events" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="textEventsAmount" layoutX="106.0" layoutY="49.0" text="Events Amount" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="106.0" layoutY="77.0" style="-fx-text-fill: #bbb;" text="Total in a period" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="769.0" layoutY="212.0" prefHeight="121.0" prefWidth="354.0" styleClass="panel-gray">
+                           <children>
+                              <Circle fill="#edf1f500" layoutX="56.0" layoutY="61.0" radius="34.0" stroke="#4bb94f" strokeType="INSIDE" strokeWidth="5.0" />
+                              <Label layoutX="106.0" layoutY="27.0" text="Income" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="textIncome" layoutX="106.0" layoutY="49.0" text="\$ Income" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="106.0" layoutY="77.0" style="-fx-text-fill: #bbb;" text="Total in a period" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="224.0" layoutY="73.0" style="-fx-text-fill: #4bb94f;" text="\%" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="769.0" layoutY="351.0" prefHeight="121.0" prefWidth="354.0" styleClass="panel-gray">
+                           <children>
+                              <Circle fill="#edf1f500" layoutX="56.0" layoutY="61.0" radius="34.0" stroke="#2d8097" strokeType="INSIDE" strokeWidth="5.0" />
+                              <Label layoutX="106.0" layoutY="27.0" text="Tickets" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="textTicketsAmount" layoutX="106.0" layoutY="49.0" text="Tickets Amount" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="106.0" layoutY="77.0" style="-fx-text-fill: #bbb;" text="Total in a period" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="224.0" layoutY="73.0" style="-fx-text-fill: #4bb94f;" text="\%" textFill="#f2e4e4">
+                                 <font>
+                                    <Font name="Poppins Regular" size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                        <Button layoutX="795.0" layoutY="525.0" mnemonicParsing="false" onAction="#onDownloadReport" prefHeight="53.0" prefWidth="316.0" styleClass="button-purple" text="Download Report">
+                           <font>
+                              <Font name="Poppins Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </center></BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

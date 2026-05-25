@@ -99,6 +99,41 @@ public class SeeDetailsEventController {
                 button.setOnAction(e -> handleSeat(button));
             }
         }
+        loadUserImage();
+        loadEventImage();
+    }
+
+
+    private void loadUserImage() {
+
+        User userr = UserSession.getCurrentUser();
+
+        if (userr == null || userr.getImagePath() == null || userr.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(userr.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        user.setImage(new Image(file.toURI().toString()));
+    }
+
+    private void loadEventImage() {
+
+        if (event == null || event.getImagePath() == null || event.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(event.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgEvent.setImage(new Image(file.toURI().toString()));
     }
 
     public void setEvent(Event event) {
@@ -315,7 +350,7 @@ public class SeeDetailsEventController {
 
     @FXML
     void onChangeMerchandising(MouseEvent event){
-
+        EvenlyApplication.changeScene("Merchandising.fxml");
     }
 
     @FXML

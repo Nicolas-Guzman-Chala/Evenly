@@ -2,15 +2,18 @@ package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.Compra;
 import co.edu.uniquindio.poo.evenly.classes.model.User;
+import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
 import co.edu.uniquindio.poo.evenly.classes.service.UserService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +38,18 @@ public class AdminUsersController {
 
     @FXML
     public void initialize(){
+        String name = "Unknown";
+
+        if (UserSession.getCurrentUser() != null &&
+                UserSession.getCurrentUser().getFullName() != null &&
+                !UserSession.getCurrentUser().getFullName().isBlank()) {
+
+            name = UserSession.getCurrentUser().getFullName();
+        }
+
+        textName.setText(name);
+
+        loadUserImage();
 
         users = userService.getUsers();
 
@@ -68,7 +83,22 @@ public class AdminUsersController {
 
         setDashboardInfo();
     }
+    private void loadUserImage() {
 
+        User user = UserSession.getCurrentUser();
+
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(user.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgUser.setImage(new Image(file.toURI().toString()));
+    }
     public void renderUsers(){
 
         vboxContainer.getChildren().clear();
@@ -177,12 +207,12 @@ public class AdminUsersController {
 
     @FXML
     void onChangeLogout(MouseEvent event) {
-
+EvenlyApplication.changeScene("Login.fxml");
     }
 
     @FXML
     void onChangeReports(MouseEvent event) {
-
+EvenlyApplication.changeScene("AdminReports.fxml");
     }
 
     @FXML

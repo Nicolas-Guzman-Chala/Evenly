@@ -79,10 +79,11 @@ public class AdminDashboardController {
     private ImageView imgUser;
 
     @FXML
-    private Label textName;
+    private Label textProcentajeSales;
 
     @FXML
-    private Label textProcentajeSales;
+    private Label textName;
+
 
     @FXML
     public void initialize() {
@@ -315,7 +316,7 @@ public class AdminDashboardController {
 
     @FXML
     void onChangeReportsAdmin(MouseEvent event) {
-
+     EvenlyApplication.changeScene("AdminReports.fxml");
     }
 
     @FXML

@@ -1,14 +1,11 @@
 package co.edu.uniquindio.poo.evenly;
 
+import co.edu.uniquindio.poo.evenly.classes.model.*;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.TipoZona;
-import co.edu.uniquindio.poo.evenly.classes.model.Evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.EstadoEvento;
-import co.edu.uniquindio.poo.evenly.classes.model.Event;
-import co.edu.uniquindio.poo.evenly.classes.model.Recinto;
 import co.edu.uniquindio.poo.evenly.classes.model.EventFactoryDTO.CreateEventDTO;
-import co.edu.uniquindio.poo.evenly.classes.model.Zona;
 import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import co.edu.uniquindio.poo.evenly.classes.service.ImageService;
@@ -17,10 +14,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +34,7 @@ public class AdminEventsController {
     private List<Event> events = new ArrayList<>();
 
     private String imagePath;
+
 
     public AdminEventsController(){
 
@@ -86,9 +86,41 @@ public class AdminEventsController {
     @FXML
     public void initialize(){
 
+
+        String name = "Unknown";
+
+        if (UserSession.getCurrentUser() != null &&
+                UserSession.getCurrentUser().getFullName() != null &&
+                !UserSession.getCurrentUser().getFullName().isBlank()) {
+
+            name = UserSession.getCurrentUser().getFullName();
+        }
+
+        textName.setText(name);
+        loadUserImage();
+
+
         loadChoiceBoxes();
 
         refreshEvents();
+
+    }
+
+    private void loadUserImage() {
+
+        User user = UserSession.getCurrentUser();
+
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(user.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgUser.setImage(new Image(file.toURI().toString()));
     }
 
     private void loadChoiceBoxes(){
@@ -317,7 +349,7 @@ public class AdminEventsController {
 
     @FXML
     void onChangeReports(MouseEvent event){
-
+EvenlyApplication.changeScene("AdminReports.fxml");
     }
 
     @FXML

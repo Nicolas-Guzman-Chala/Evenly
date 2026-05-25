@@ -4,6 +4,7 @@ import co.edu.uniquindio.poo.evenly.classes.model.Evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.CategoriaEvento;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.Cities;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
+import co.edu.uniquindio.poo.evenly.classes.model.User;
 import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
@@ -15,10 +16,12 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 
+import java.io.File;
 import java.util.List;
 
 public class EventController {
@@ -76,8 +79,24 @@ public class EventController {
         renderEvents(
                 eventService.getEvents()
         );
+        loadUserImage();
     }
+    private void loadUserImage() {
 
+        User userr = UserSession.getCurrentUser();
+
+        if (userr == null || userr.getImagePath() == null || userr.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(userr.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        user.setImage(new Image(file.toURI().toString()));
+    }
     private void loadFilters(){
 
         categoryPicker
@@ -189,7 +208,7 @@ public class EventController {
 
     @FXML
     void onChangeMerchandising(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Merchandising.fxml");
     }
 
     @FXML

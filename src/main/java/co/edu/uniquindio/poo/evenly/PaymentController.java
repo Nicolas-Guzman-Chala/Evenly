@@ -1,7 +1,7 @@
 package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.*;
-import co.edu.uniquindio.poo.evenly.classes.model.AsientoState.VendidoState;
+import co.edu.uniquindio.poo.evenly.classes.model.CompraDecorator.*;
 import co.edu.uniquindio.poo.evenly.classes.model.CompraStatePackage.PagadoState;
 import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoMasterCard;
 import co.edu.uniquindio.poo.evenly.classes.model.CompraStrategy.PagoPSE;
@@ -69,6 +69,12 @@ public class PaymentController {
         resetStyles();
         selectPayment(cardPayment);
         selectedPaymentMethod = PaymentMethod.MASTERCARD;
+        choiceBoxDecorator.getItems().addAll(
+                "VIP",
+                "Seguro",
+                "Parqueadero",
+                "Merch"
+        );
     }
 
     private void loadUserImage() {

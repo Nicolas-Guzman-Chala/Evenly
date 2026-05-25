@@ -5,6 +5,7 @@ module co.edu.uniquindio.poo.evenly {
     requires javafx.graphics;
 
     requires com.google.gson;
+    requires org.apache.pdfbox;
 
     opens co.edu.uniquindio.poo.evenly
             to javafx.fxml;

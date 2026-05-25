@@ -62,7 +62,7 @@ public class HomeController {
 
     @FXML
     void onChangeMerchandising(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Merchandising.fxml");
     }
 
     @FXML

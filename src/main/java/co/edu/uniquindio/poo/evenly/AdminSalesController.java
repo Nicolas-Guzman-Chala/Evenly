@@ -9,9 +9,11 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -47,16 +49,45 @@ public class AdminSalesController {
     @FXML
     private Label textSalesValue;
 
+
+
+
     private final UserService userService = new UserService();
 
     @FXML
     public void initialize() {
+        String name = "Unknown";
 
+        if (UserSession.getCurrentUser() != null &&
+                UserSession.getCurrentUser().getFullName() != null &&
+                !UserSession.getCurrentUser().getFullName().isBlank()) {
+
+            name = UserSession.getCurrentUser().getFullName();
+        }
+
+        textName.setText(name);
+
+        loadUserImage();
         setupTable();
         loadSales();
         loadChart();
     }
+    private void loadUserImage() {
 
+        User user = UserSession.getCurrentUser();
+
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(user.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgUser.setImage(new Image(file.toURI().toString()));
+    }
     private void setupTable() {
 
         colUser.setCellValueFactory(new PropertyValueFactory<>("userName"));
@@ -127,9 +158,19 @@ public class AdminSalesController {
         lineChart.getData().add(series);
     }
 
-    @FXML void onChangeDashboard(MouseEvent event) { EvenlyApplication.changeScene("AdminDashboard.fxml");}
-    @FXML void onChangeEvents(MouseEvent event) { EvenlyApplication.changeScene("AdminEvents.fxml");}
-    @FXML void onChangeLogout(MouseEvent event) { EvenlyApplication.changeScene("Login.fxml");}
-    @FXML void onChangeReports(MouseEvent event) { }
-    @FXML void onChangeUsers(MouseEvent event) { EvenlyApplication.changeScene("AdminUsers.fxml");}
+    @FXML void onChangeDashboard(MouseEvent event) {
+        EvenlyApplication.changeScene("AdminDashboard.fxml");
+    }
+    @FXML void onChangeEvents(MouseEvent event) {
+        EvenlyApplication.changeScene("AdminEvents.fxml");
+    }
+    @FXML void onChangeLogout(MouseEvent event) {
+        EvenlyApplication.changeScene("Login.fxml");
+    }
+    @FXML void onChangeReports(MouseEvent event) {
+        EvenlyApplication.changeScene("AdminReports.fxml");
+    }
+    @FXML void onChangeUsers(MouseEvent event) {
+        EvenlyApplication.changeScene("AdminUsers.fxml");
+    }
 }
