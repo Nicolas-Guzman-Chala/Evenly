@@ -1,9 +1,6 @@
 package co.edu.uniquindio.poo.evenly;
 
-import co.edu.uniquindio.poo.evenly.classes.model.Compra;
-import co.edu.uniquindio.poo.evenly.classes.model.Event;
-import co.edu.uniquindio.poo.evenly.classes.model.EventSummaryDTO;
-import co.edu.uniquindio.poo.evenly.classes.model.User;
+import co.edu.uniquindio.poo.evenly.classes.model.*;
 import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import co.edu.uniquindio.poo.evenly.classes.service.UserService;
 
@@ -22,7 +19,11 @@ import javafx.scene.control.TableView;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
+import java.io.File;
 
 public class AdminDashboardController {
 
@@ -75,6 +76,9 @@ public class AdminDashboardController {
     private Label Users;
 
     @FXML
+    private ImageView imgUser;
+
+    @FXML
     private Label textName;
 
     @FXML
@@ -83,11 +87,42 @@ public class AdminDashboardController {
     @FXML
     public void initialize() {
 
+        String name = "Unknown";
+
+        if (UserSession.getCurrentUser() != null &&
+                UserSession.getCurrentUser().getFullName() != null &&
+                !UserSession.getCurrentUser().getFullName().isBlank()) {
+
+            name = UserSession.getCurrentUser().getFullName();
+        }
+
+        textName.setText(name);
+
+        loadUserImage();
+
         initializeTable();
 
         loadDashboardData();
 
         loadCharts();
+
+    }
+
+    private void loadUserImage() {
+
+        User user = UserSession.getCurrentUser();
+
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(user.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgUser.setImage(new Image(file.toURI().toString()));
     }
 
     private void initializeTable() {
@@ -268,7 +303,9 @@ public class AdminDashboardController {
 
     @FXML
     void onChangeLogout(MouseEvent event) {
-
+        EvenlyApplication.changeScene(
+                "Login.fxml"
+        );
     }
 
     @FXML

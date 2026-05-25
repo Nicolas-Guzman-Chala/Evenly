@@ -48,6 +48,9 @@ public class AdminEventsController {
     }
 
     @FXML
+    private Label textName;
+
+    @FXML
     private ChoiceBox<CategoriaEvento> pickCategory;
 
     @FXML
@@ -302,6 +305,11 @@ public class AdminEventsController {
     }
 
     @FXML
+    void onChangeSales(MouseEvent event){
+        EvenlyApplication.changeScene("AdminSales.fxml");
+    }
+
+    @FXML
     void onChangeEvents(MouseEvent event){
 
         sceneManager.openAdminEvents();
@@ -314,13 +322,14 @@ public class AdminEventsController {
 
     @FXML
     void onChangeUsers(MouseEvent event){
-
         sceneManager.openAdminUsers();
     }
 
     @FXML
     void onChangelogout(MouseEvent event){
-
+        EvenlyApplication.changeScene(
+                "Login.fxml"
+        );
     }
 
     private void clearFields(){

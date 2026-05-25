@@ -5,7 +5,7 @@
     "email": "nicolas@gmail.com",
     "phone": "123",
     "password": "123",
-    "imagePath": "",
+    "imagePath": "C:/Users/bimac/IdeaProjects/Evenly/storage/images/1779680216536_secure-icon.png",
     "purchaseHistory": [
       {
         "idCompra": "C-1779645131401",
@@ -2796,6 +2796,16 @@
         "venueName": "Sala Experimental"
       }
     ],
+    "metodosPago": []
+  },
+  {
+    "idUser": 2,
+    "fullName": "campos",
+    "email": "campos@gmail.com",
+    "phone": "123",
+    "password": "123",
+    "imagePath": "C:/Users/bimac/IdeaProjects/Evenly/storage/images/1779678712654_change-icon.png",
+    "purchaseHistory": [],
     "metodosPago": []
   }
 ]

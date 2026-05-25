@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.*;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatStatus;
 import co.edu.uniquindio.poo.evenly.classes.model.ENUMS.SeatZone;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +80,11 @@ public class SeeDetailsEventController {
 
     @FXML
     private Label textPriceVIP;
+
+    @FXML
+    private ImageView user;
+
+    private SceneManager sceneManager = new SceneManager();
 
     private Map<Button, Seat> seatMap = new HashMap<>();
     private List<Seat> selectedSeats = new ArrayList<>();
@@ -297,7 +303,14 @@ public class SeeDetailsEventController {
 
     @FXML
     void onChangeProfile(MouseEvent event){
-//        EvenlyApplication.changeScene()
+        if(UserSession.getCurrentUser() == null){
+
+            sceneManager.openRegister();
+
+        } else {
+
+            sceneManager.openProfile();
+        }
     }
 
     @FXML

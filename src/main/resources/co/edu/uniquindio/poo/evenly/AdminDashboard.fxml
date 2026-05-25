@@ -96,7 +96,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgUser" fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@imgs/users-icon.png" />
                                  </image>
@@ -205,7 +205,7 @@
                <center>
                   <AnchorPane prefHeight="636.0" prefWidth="1156.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Pane prefHeight="48.0" prefWidth="1151.0" AnchorPane.bottomAnchor="588.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <Pane prefHeight="48.0" prefWidth="1151.0" AnchorPane.bottomAnchor="607.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
                               <AnchorPane layoutX="41.0" layoutY="7.0" prefHeight="31.0" prefWidth="164.0" styleClass="panel-selected">
                                  <children>
@@ -379,7 +379,7 @@
                            </children></AnchorPane>
                         <AnchorPane layoutX="47.0" layoutY="317.0" prefHeight="293.0" prefWidth="500.0">
                            <children>
-                              <BarChart fx:id="TableSalesSummary" layoutX="-40.0" layoutY="41.0" prefHeight="269.0" prefWidth="567.0">
+                              <BarChart fx:id="TableSalesSummary" layoutX="-40.0" layoutY="41.0" prefHeight="294.0" prefWidth="567.0">
                                 <xAxis>
                                   <CategoryAxis side="BOTTOM" />
                                 </xAxis>
@@ -397,7 +397,7 @@
                         </AnchorPane>
                         <AnchorPane layoutX="608.0" layoutY="334.0" prefHeight="268.0" prefWidth="437.0">
                            <children>
-                              <LineChart fx:id="TableTicketsSummary" layoutX="-29.0" layoutY="25.0" prefHeight="270.0" prefWidth="551.0">
+                              <LineChart fx:id="TableTicketsSummary" layoutX="-29.0" layoutY="25.0" prefHeight="296.0" prefWidth="551.0">
                                 <xAxis>
                                   <CategoryAxis side="BOTTOM" />
                                 </xAxis>

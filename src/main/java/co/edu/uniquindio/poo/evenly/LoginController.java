@@ -47,6 +47,18 @@ public class LoginController {
             return;
         }
 
+        //verificacionAdmin
+
+        if(email.equals("admin123@gmail.com") &&
+                password.equals("123")) {
+
+            System.out.println(
+                    "Admin login"
+            );
+            EvenlyApplication.changeScene("AdminDashboard.fxml");
+            return;
+        }
+
         User user =
                 userService.login(
                         email,

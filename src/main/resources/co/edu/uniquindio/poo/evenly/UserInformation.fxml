@@ -34,6 +34,11 @@
                                     <Font name="Poppins SemiBold" size="13.0" />
                                  </font>
                               </Label>
+                              <ImageView fitHeight="44.0" fitWidth="44.0" layoutX="171.0" layoutY="6.0" onMouseClicked="#onChangeLogout" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@imgs/logout-icon.png" />
+                                 </image>
+                              </ImageView>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="482.0" layoutY="19.0" prefHeight="43.0" prefWidth="481.0" styleClass="gray-panel">
@@ -156,7 +161,7 @@
                               </Label>
                               <ScrollPane layoutX="31.0" layoutY="113.0">
                                  <content>
-                                    <VBox fx:id="vBoxContainer" spacing="15" prefHeight="407.0" prefWidth="560.0" />
+                                    <VBox fx:id="vBoxContainer" prefHeight="407.0" prefWidth="560.0" spacing="15" />
                                  </content>
                               </ScrollPane>
                            </children>

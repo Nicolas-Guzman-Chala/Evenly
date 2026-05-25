@@ -37,19 +37,19 @@
                         </ImageView>
                         <AnchorPane layoutX="482.0" layoutY="19.0" prefHeight="43.0" prefWidth="481.0" styleClass="gray-panel">
                            <children>
-                              <Label fx:id="home" layoutX="60.0" layoutY="10.0" onDragDetected="#onChangeHome" text="Home">
+                              <Label fx:id="home" layoutX="60.0" layoutY="10.0" onMouseClicked="#onChangeHome" text="Home">
                                  <font>
                                     <Font name="Poppins SemiBold" size="16.0" />
                                  </font>
                               </Label>
                               <Line endX="-100.0" endY="11.0" layoutX="265.0" layoutY="22.0" startX="-100.0" startY="-13.0" stroke="#d0bdbd" />
-                              <Label fx:id="events" layoutX="214.0" layoutY="10.0" onDragDetected="#onChangeEvents" text="Events">
+                              <Label fx:id="events" layoutX="214.0" layoutY="10.0" onMouseClicked="#onChangeEvents" text="Events">
                                  <font>
                                     <Font name="Poppins SemiBold" size="16.0" />
                                  </font>
                               </Label>
                               <Line endX="-100.0" endY="11.0" layoutX="416.0" layoutY="22.0" startX="-100.0" startY="-13.0" stroke="#d0bdbd" />
-                              <Label fx:id="merchandising" layoutX="336.0" layoutY="10.0" onDragDetected="#onChangeMerchandising" text="Merchandising">
+                              <Label fx:id="merchandising" layoutX="336.0" layoutY="10.0" onMouseClicked="#onChangeMerchandising" text="Merchandising">
                                  <font>
                                     <Font name="Poppins SemiBold" size="16.0" />
                                  </font>

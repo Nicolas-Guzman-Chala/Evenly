@@ -3,6 +3,7 @@ package co.edu.uniquindio.poo.evenly;
 import co.edu.uniquindio.poo.evenly.classes.model.Compra;
 import co.edu.uniquindio.poo.evenly.classes.model.Entrada;
 import co.edu.uniquindio.poo.evenly.classes.model.Event;
+import co.edu.uniquindio.poo.evenly.classes.model.PurchaseTicketPDFPrototype;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -99,8 +100,8 @@ public class HistoryUserCardController {
     @FXML
     void onChangeHistoryInfo(MouseEvent event) {
 
-        System.out.println(
-                "Mostrar detalles de compra"
-        );
+        System.out.println("Generando PDF de compra...");
+
+        PurchaseTicketPDFPrototype.generateTicket(compra);
     }
 }

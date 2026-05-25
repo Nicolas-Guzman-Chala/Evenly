@@ -104,7 +104,7 @@ public class AdminSalesController {
 
             for (Compra compra : user.getPurchaseHistory()) {
 
-                String day = LocalDate.now().toString(); // cámbialo si tienes fecha real
+                String day = LocalDate.now().toString();
 
                 salesByDay.put(
                         day,

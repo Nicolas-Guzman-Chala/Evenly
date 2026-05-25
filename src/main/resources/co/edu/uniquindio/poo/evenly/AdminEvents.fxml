@@ -96,7 +96,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Label>
-                              <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgUserDashboard" fitHeight="28.0" fitWidth="28.0" layoutX="14.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@imgs/users-icon.png" />
                                  </image>
@@ -243,7 +243,7 @@
                               </AnchorPane>
                               <AnchorPane layoutX="356.0" layoutY="7.0" prefHeight="35.0" prefWidth="184.0" style="-fx-background-color: transparent;">
                                  <children>
-                                    <Label layoutX="49.0" layoutY="7.0" onMouseClicked="#onChangeEvents" text="Sales" textFill="#f2e4e4cf">
+                                    <Label layoutX="49.0" layoutY="7.0" onMouseClicked="#onChangeSales" text="Sales" textFill="#f2e4e4cf">
                                        <font>
                                           <Font name="Poppins Regular" size="16.0" />
                                        </font>

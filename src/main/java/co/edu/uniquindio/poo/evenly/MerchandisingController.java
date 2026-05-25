@@ -2,9 +2,8 @@ package co.edu.uniquindio.poo.evenly;
 
 import co.edu.uniquindio.poo.evenly.classes.model.User;
 import co.edu.uniquindio.poo.evenly.classes.model.UserSession;
-import javafx.event.ActionEvent;
+import co.edu.uniquindio.poo.evenly.classes.navigation.SceneManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -12,10 +11,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.File;
 
-public class HomeController {
-
-    @FXML
-    private Button EventsButton;
+public class MerchandisingController {
 
     @FXML
     private Label events;
@@ -24,34 +20,35 @@ public class HomeController {
     private Label home;
 
     @FXML
-    private Label merchandising;
+    private ImageView imgUser;
 
     @FXML
-    private ImageView user;
+    private Label merchandising;
 
+    private SceneManager sceneManager = new SceneManager();
     @FXML
     public void initialize() {
         loadUserImage();
     }
     private void loadUserImage() {
 
-        User userr = UserSession.getCurrentUser();
+        User user = UserSession.getCurrentUser();
 
-        if (userr == null || userr.getImagePath() == null || userr.getImagePath().isBlank()) {
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
             return;
         }
 
-        File file = new File(userr.getImagePath());
+        File file = new File(user.getImagePath());
 
         if (!file.exists()) {
             return;
         }
 
-        user.setImage(new Image(file.toURI().toString()));
+        imgUser.setImage(new Image(file.toURI().toString()));
     }
 
-    @FXML
-    void onChangeEvents(ActionEvent event) {
+        @FXML
+    void onChangeEvents(MouseEvent event) {
         EvenlyApplication.changeScene("Events.fxml");
     }
 
@@ -62,24 +59,12 @@ public class HomeController {
 
     @FXML
     void onChangeMerchandising(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Merchandising.fxml");
     }
 
     @FXML
     void onChangeProfile(MouseEvent event) {
-        if(UserSession.getCurrentUser() == null) {
-
-            EvenlyApplication.changeScene(
-                    "Register.fxml"
-            );
-
-        } else {
-
-            EvenlyApplication.changeScene(
-                    "Profile.fxml"
-            );
-        }
+        sceneManager.openProfile();
     }
 
 }
-

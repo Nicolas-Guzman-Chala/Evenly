@@ -13,13 +13,16 @@ import co.edu.uniquindio.poo.evenly.classes.service.EventService;
 import co.edu.uniquindio.poo.evenly.classes.service.UserService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +41,15 @@ public class PaymentController {
 
     @FXML private DatePicker datePicker;
 
+    @FXML private ChoiceBox<String> choiceBoxDecorator;
+
     @FXML private TextField inputCountry;
     @FXML private TextField inputNameCard;
     @FXML private TextField inputNumberCard;
     @FXML private TextField inputPostcode;
 
     @FXML private ImageView imgUser;
+    @FXML private ImageView imgEventPurchase;
 
     private Event event;
     private List<Seat> seats;
@@ -58,9 +64,28 @@ public class PaymentController {
 
     @FXML
     public void initialize() {
+        loadUserImage();
+
         resetStyles();
         selectPayment(cardPayment);
         selectedPaymentMethod = PaymentMethod.MASTERCARD;
+    }
+
+    private void loadUserImage() {
+
+        User user = UserSession.getCurrentUser();
+
+        if (user == null || user.getImagePath() == null || user.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(user.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgUser.setImage(new Image(file.toURI().toString()));
     }
 
     public void setData(Event event, List<Seat> seats, double total) {
@@ -80,6 +105,22 @@ public class PaymentController {
         }
 
         SeatsValues.setText(seatText.toString());
+        loadEventImage();
+    }
+
+    private void loadEventImage() {
+
+        if (event == null || event.getImagePath() == null || event.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(event.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgEventPurchase.setImage(new Image(file.toURI().toString()));
     }
 
     @FXML
@@ -233,17 +274,73 @@ public class PaymentController {
         }
 
         PagoStrategy pagoStrategy = crearEstrategia(selectedPaymentMethod);
-
-        return new Compra(
+        Compra compraReal = new Compra(
                 "C-" + System.currentTimeMillis(),
                 LocalDateTime.now().toLocalDate(),
                 new PagadoState(),
                 user.getIdUser(),
                 event,
                 selectedPaymentMethod,
-                new Tarifa(0,10000,0),
+                new Tarifa(0, 10000, 0),
                 entradas
         );
+        CompraComponent compraDecorada = compraReal;
+
+        String extra = choiceBoxDecorator.getValue();
+
+        if (extra != null) {
+
+            switch (extra) {
+
+                case "VIP":
+
+                    compraDecorada =
+                            new VIPDecorator(
+                                    compraDecorada
+                            );
+
+                    break;
+
+                case "Seguro":
+
+                    compraDecorada =
+                            new SeguroDecorator(
+                                    compraDecorada
+                            );
+
+                    break;
+
+                case "Parqueadero":
+
+                    compraDecorada =
+                            new ParqueaderoDecorator(
+                                    compraDecorada
+                            );
+
+                    break;
+
+                case "Merch":
+
+                    compraDecorada =
+                            new MerchDecorator(
+                                    compraDecorada
+                            );
+
+                    break;
+
+
+            }
+
+        }
+        System.out.println(
+                compraDecorada.mostrarDescripcion()
+        );
+
+        System.out.println(
+                "TOTAL: " +
+                        compraDecorada.calcularTotal()
+        );
+        return compraReal;
     }
 
     private PagoStrategy crearEstrategia(PaymentMethod method) {

@@ -20,7 +20,7 @@ public class EvenlyApplication extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(EvenlyApplication.class.getResource("/co/edu/uniquindio/poo/evenly/AdminDashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(EvenlyApplication.class.getResource("/co/edu/uniquindio/poo/evenly/Home.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Evenly");
         stage.setMaximized(true);

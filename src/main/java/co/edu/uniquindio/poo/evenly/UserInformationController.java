@@ -76,7 +76,27 @@ public class UserInformationController {
         loadUserInfo();
 
         loadHistory();
+
+        loadUserImage();
     }
+
+    private void loadUserImage() {
+
+        User userr = UserSession.getCurrentUser();
+
+        if (userr == null || userr.getImagePath() == null || userr.getImagePath().isBlank()) {
+            return;
+        }
+
+        File file = new File(userr.getImagePath());
+
+        if (!file.exists()) {
+            return;
+        }
+
+        imgPhotoProfile.setImage(new Image(file.toURI().toString()));
+    }
+
 
     private void loadUserInfo() {
 
@@ -234,12 +254,17 @@ public class UserInformationController {
 
     @FXML
     void onChangeMerchandising(MouseEvent event) {
-
+        EvenlyApplication.changeScene("Merchandising.fxml");
     }
 
     @FXML
     void onChangeProfile(MouseEvent event) {
 
         sceneManager.openProfile();
+    }
+
+    @FXML
+    void onChangeLogout(MouseEvent event){
+        EvenlyApplication.changeScene("Login.fxml");
     }
 }
